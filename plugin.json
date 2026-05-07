@@ -1,0 +1,9 @@
+{
+  "name": "vanilla-boris",
+  "version": "0.2.0",
+  "description": "Boris-flavored defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop, parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents, and an expanded hook palette.",
+  "skills": "./skills",
+  "commands": "./commands",
+  "agents": "./agents",
+  "hooks": "./hooks"
+}

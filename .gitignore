@@ -1,0 +1,17 @@
+# Per-machine settings written by install.sh
+.claude/settings.local.json
+
+# Installer artifacts inside the project (project-scope install)
+.claude/
+
+# Node / Bun
+node_modules/
+bun.lockb
+*.log
+
+# Editor / OS
+.DS_Store
+*.bak
+*.swp
+.idea/
+.vscode/
