@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.4.1 — 2026-05-07
+
+Fix: `marketplace.json` now matches the official Anthropic schema so
+`/plugin marketplace add fnefh/vanilla-boris` and `/plugin install
+vanilla-boris@vanilla-boris-marketplace` resolve cleanly.
+
+- **Path**: `marketplace.json` → `.claude-plugin/marketplace.json` (per
+  code.claude.com/docs/en/plugin-marketplaces).
+- **`owner`**: `"fnefh"` (string) → `{"name": "fnefh", "url": "..."}` (object).
+- **`source`**: `"https://github.com/..."` (string URL) →
+  `{"source": "github", "repo": "fnefh/vanilla-boris", "ref": "v0.4.0"}`
+  (object pinned to git tag).
+- Pinned to git tag `v0.4.0` (created in this release).
+- README quickstart now leads with the marketplace install path; manual
+  `git clone` + `./install.sh` is option B.
+- README troubleshooting documents the `GITHUB_TOKEN`/`GH_TOKEN` gotcha
+  for background auto-updates on a private repo (manual install works
+  with `gh auth` credentials; background refresh needs an explicit token).
+- Tests assert the new schema (`owner.name`, `source.source`, `source.repo`).
+
+No functional plugin changes; this is purely the install/distribution path.
+
 ## 0.4.0 — 2026-05-07
 
 Driven by a third research pass: deep-dive into code.claude.com/docs +

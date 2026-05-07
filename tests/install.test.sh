@@ -8,6 +8,11 @@ tmp=$(mktemp -d)
 trap "rm -rf $tmp" EXIT
 
 cp -R "$REPO"/. "$tmp/repo"
+# Strip any locally-leftover .claude/ that the source repo's gitignore
+# hides — cp -R doesn't honor gitignore, so a stale .claude/ left from
+# a prior run would otherwise poison the install.sh template-write
+# check (which only writes settings.local.json if absent).
+rm -rf "$tmp/repo/.claude"
 pushd "$tmp/repo" >/dev/null
 
 # Non-interactive install (auto-decline shell edits).
@@ -53,8 +58,14 @@ jq -e '.settings.spinnerVerbs | length == 12' plugin.json >/dev/null \
   || { echo "FAIL: plugin.json spinnerVerbs count != 12"; exit 1; }
 
 # v0.4.0 — marketplace.json + .claude-plugin/settings.json + new bins/styles/monitors.
-jq -e '.plugins[0].name == "vanilla-boris"' marketplace.json >/dev/null \
-  || { echo "FAIL: marketplace.json[0].name != vanilla-boris"; exit 1; }
+jq -e '.plugins[0].name == "vanilla-boris"' .claude-plugin/marketplace.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/marketplace.json plugins[0].name != vanilla-boris"; exit 1; }
+jq -e '.owner.name == "fnefh"' .claude-plugin/marketplace.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/marketplace.json owner.name != fnefh (must be object per docs)"; exit 1; }
+jq -e '.plugins[0].source.source == "github"' .claude-plugin/marketplace.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/marketplace.json source.source != github (must be object per docs)"; exit 1; }
+jq -e '.plugins[0].source.repo == "fnefh/vanilla-boris"' .claude-plugin/marketplace.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/marketplace.json source.repo != fnefh/vanilla-boris"; exit 1; }
 jq -e '.permissions.defaultMode == "ask"' .claude-plugin/settings.json >/dev/null \
   || { echo "FAIL: .claude-plugin/settings.json missing permissions.defaultMode"; exit 1; }
 test -x ".claude/bin/vb-verify"   || { echo "FAIL: bin/vb-verify not installed"; exit 1; }

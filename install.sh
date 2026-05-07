@@ -129,5 +129,8 @@ echo
 echo "PermissionRequest.sh ships disabled by default (silent no-op until"
 echo "you set VANILLA_BORIS_PERMREQ_ROUTE). See hooks/PermissionRequest.sh."
 echo
-echo "marketplace.json ships at the repo root. Once published, install via:"
-echo "    /plugin marketplace add <git-url>  &&  /plugin install vanilla-boris"
+echo "Marketplace install path (.claude-plugin/marketplace.json on the upstream repo):"
+echo "    /plugin marketplace add fnefh/vanilla-boris"
+echo "    /plugin install vanilla-boris@vanilla-boris-marketplace"
+echo "(Private repo: uses your existing 'gh auth' credentials. For background"
+echo " auto-updates, export GITHUB_TOKEN or GH_TOKEN.)"

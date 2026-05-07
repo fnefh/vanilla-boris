@@ -1,13 +1,20 @@
 {
   "name": "vanilla-boris-marketplace",
-  "description": "Marketplace entry for vanilla-boris. Hosted at github.com/fnefh/vanilla-boris (private). /plugin install resolves over GitHub auth.",
-  "owner": "fnefh",
+  "description": "Marketplace entry for vanilla-boris. Hosted at github.com/fnefh/vanilla-boris (private). /plugin install resolves over the user's existing gh auth credentials.",
+  "owner": {
+    "name": "fnefh",
+    "url": "https://github.com/fnefh"
+  },
   "plugins": [
     {
       "name": "vanilla-boris",
       "description": "Boris-flavored Claude Code defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop, parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents, a 9-hook palette, a status line, spinner verbs, an opt-in output style, and a learn-codebase skill.",
       "version": "0.4.0",
-      "source": "https://github.com/fnefh/vanilla-boris",
+      "source": {
+        "source": "github",
+        "repo": "fnefh/vanilla-boris",
+        "ref": "v0.4.0"
+      },
       "homepage": "https://howborisusesclaudecode.com/",
       "license": "MIT"
     }

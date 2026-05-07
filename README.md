@@ -11,14 +11,32 @@ quickstart.
 
 ## Quickstart
 
+### Option A: marketplace install (recommended)
+
+In any Claude Code session where you're logged in as a user with read
+access to this repo:
+
+```
+/plugin marketplace add fnefh/vanilla-boris
+/plugin install vanilla-boris@vanilla-boris-marketplace
+```
+
+The marketplace metadata lives at `.claude-plugin/marketplace.json` on
+the upstream repo and pins to git tag `v0.4.0`.
+
+### Option B: clone + install
+
 ```bash
+git clone https://github.com/fnefh/vanilla-boris
+cd vanilla-boris
+
 # Project scope — writes to ./.claude/ inside this repo
 ./install.sh project
 
 # Personal scope — writes to ~/.claude/
 ./install.sh personal
 
-# Then run the optional 9-step wizard
+# Then run the optional 12-step wizard
 bun run wizard.ts
 ```
 
@@ -82,7 +100,19 @@ private files.
   `CLAUDE_CODE_AUTO_COMPACT_WINDOW=400000` in your shell profile (the
   installer offers this; you can also do it manually).
 - **`/babysit` etc. don't resolve.** They live under `commands/`, not
-  `skills/`, in v0.2.0 — verify with `claude --print "/commands"`.
+  `skills/`, in v0.2.0+ — verify with `claude --print "/commands"`.
+- **`/plugin marketplace add fnefh/vanilla-boris` says "marketplace not
+  found".** Confirm you're logged in as a user with read access to the
+  private repo (`gh auth status`). The first install uses your existing
+  git credentials; if you don't see the repo from your terminal,
+  Claude Code can't fetch it either.
+- **Background auto-updates fail silently on a private repo.** Manual
+  install uses your `gh auth` credentials, but background refresh runs
+  out-of-session and needs an explicit token. Export `GITHUB_TOKEN` (or
+  `GH_TOKEN`) in your shell profile to enable it:
+  ```bash
+  export GITHUB_TOKEN="$(gh auth token)"
+  ```
 
 ## License
 

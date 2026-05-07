@@ -68,7 +68,7 @@ Each row below is one claim this PRD makes. Trust levels:
 | 0.32 | **4-layer permission mechanism** (prompt-injection detection + static analysis + sandboxing + oversight) | Site §"Permissions & Safety" verbatim — auto mode is fast-path on layer 4 | ✅ verbatim |
 | 0.33 | **Routine connector list** (GitHub, Linear, Slack, WhatsApp, Asana, GDrive, dbt, Grafana) | Site §"Tool Integrations & MCPs" verbatim | ✅ verbatim |
 | 0.34 | **Boris-named-skills attribution** (`references/boris-named-skills.md`) | Names cited verbatim from site; this is *attribution*, not reconstruction | ✅ verbatim names |
-| 0.35 | **`marketplace.json`** at repo root for `/plugin install` distribution | code.claude.com/docs/en/plugins | ✅ docs-derived |
+| 0.35 | **`.claude-plugin/marketplace.json`** for `/plugin marketplace add` + `/plugin install` distribution. `owner` and `source` are objects per the official schema; `source.ref` pins to the `v0.4.0` git tag | code.claude.com/docs/en/plugin-marketplaces | ✅ docs-derived |
 | 0.36 | **`.claude-plugin/settings.json`** plugin-level defaults | code.claude.com/docs/en/plugins ("Ship default settings with your plugin") | ✅ docs-derived |
 | 0.37 | **`bin/` directory** auto-added to Bash PATH | code.claude.com/docs/en/plugins-reference | ✅ docs-derived feature; `vb-verify` / `vb-snapshot` bodies are 🟡 ours |
 | 0.38 | **`output-styles/boris-productivity.md`** | code.claude.com/docs/en/output-styles (feature); voice content reconstructed from site + Jan 2 CLAUDE.md excerpt | ✅ feature, 🟡 voice reconstruction |
