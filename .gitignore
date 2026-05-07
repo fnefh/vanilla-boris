@@ -15,3 +15,6 @@ bun.lockb
 *.swp
 .idea/
 .vscode/
+
+# MCP transient artifacts (not part of the plugin spec)
+.playwright-mcp/
