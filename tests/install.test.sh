@@ -62,10 +62,29 @@ jq -e '.plugins[0].name == "vanilla-boris"' .claude-plugin/marketplace.json >/de
   || { echo "FAIL: .claude-plugin/marketplace.json plugins[0].name != vanilla-boris"; exit 1; }
 jq -e '.owner.name == "fnefh"' .claude-plugin/marketplace.json >/dev/null \
   || { echo "FAIL: .claude-plugin/marketplace.json owner.name != fnefh (must be object per docs)"; exit 1; }
-jq -e '.plugins[0].source.source == "github"' .claude-plugin/marketplace.json >/dev/null \
-  || { echo "FAIL: .claude-plugin/marketplace.json source.source != github (must be object per docs)"; exit 1; }
-jq -e '.plugins[0].source.repo == "fnefh/vanilla-boris"' .claude-plugin/marketplace.json >/dev/null \
-  || { echo "FAIL: .claude-plugin/marketplace.json source.repo != fnefh/vanilla-boris"; exit 1; }
+# The docs accept multiple source types: {source: "github", repo: "owner/name"}
+# OR the more portable {source: "git", url: "https://..."}. We test for the
+# generic shape (object with source + ref), then assert one of the two
+# concrete forms. The "git+url" form was confirmed working end-to-end via
+# /plugin marketplace add fnefh/vanilla-boris.
+jq -e '.plugins[0].source | type == "object"' .claude-plugin/marketplace.json >/dev/null \
+  || { echo "FAIL: source must be an object, not a string"; exit 1; }
+jq -e '.plugins[0].source.ref == "v0.4.0"' .claude-plugin/marketplace.json >/dev/null \
+  || { echo "FAIL: source.ref != v0.4.0"; exit 1; }
+src_kind=$(jq -r '.plugins[0].source.source' .claude-plugin/marketplace.json)
+case "$src_kind" in
+  github)
+    jq -e '.plugins[0].source.repo == "fnefh/vanilla-boris"' .claude-plugin/marketplace.json >/dev/null \
+      || { echo "FAIL: source.source=github but source.repo != fnefh/vanilla-boris"; exit 1; }
+    ;;
+  git)
+    jq -e '.plugins[0].source.url | test("github.com/fnefh/vanilla-boris")' .claude-plugin/marketplace.json >/dev/null \
+      || { echo "FAIL: source.source=git but source.url doesn't reference fnefh/vanilla-boris"; exit 1; }
+    ;;
+  *)
+    echo "FAIL: unknown source.source: $src_kind (expected 'github' or 'git')"; exit 1
+    ;;
+esac
 jq -e '.permissions.defaultMode == "ask"' .claude-plugin/settings.json >/dev/null \
   || { echo "FAIL: .claude-plugin/settings.json missing permissions.defaultMode"; exit 1; }
 test -x ".claude/bin/vb-verify"   || { echo "FAIL: bin/vb-verify not installed"; exit 1; }

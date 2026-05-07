@@ -10,8 +10,14 @@ vanilla-boris@vanilla-boris-marketplace` resolve cleanly.
   code.claude.com/docs/en/plugin-marketplaces).
 - **`owner`**: `"fnefh"` (string) → `{"name": "fnefh", "url": "..."}` (object).
 - **`source`**: `"https://github.com/..."` (string URL) →
-  `{"source": "github", "repo": "fnefh/vanilla-boris", "ref": "v0.4.0"}`
-  (object pinned to git tag).
+  `{"source": "git", "url": "https://github.com/fnefh/vanilla-boris.git", "ref": "v0.4.0"}`
+  (object pinned to git tag). Confirmed working end-to-end via
+  `/plugin marketplace add fnefh/vanilla-boris` (returns
+  "Successfully added marketplace: vanilla-boris-marketplace") and
+  `/plugin install vanilla-boris@vanilla-boris-marketplace`. The
+  `{source: "github", repo: ...}` form is also accepted by the docs;
+  the `git+url` form is more portable and was the one that resolved
+  cleanly here.
 - Pinned to git tag `v0.4.0` (created in this release).
 - README quickstart now leads with the marketplace install path; manual
   `git clone` + `./install.sh` is option B.
