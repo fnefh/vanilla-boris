@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.4.2 — 2026-05-07
+
+Revert: `marketplace.json` source form returned to `{source: "github", repo:
+"fnefh/vanilla-boris"}` after `/plugin install` failed with *"This plugin
+uses a source type your Claude Code version does not support. Update
+Claude Code and try again."* on the `git+url` form.
+
+The earlier v0.4.1 entry's claim that `git+url` "resolved cleanly" was based
+on `/plugin marketplace add` succeeding — but that command doesn't exercise
+the source-type install path. `/plugin install` was never actually verified
+end-to-end on `git+url`. The `{source: "github", repo: ...}` form is the
+documented primary form and is supported across all current Claude Code
+versions; the `git`-source type is newer and not yet in every release.
+
+- `.claude-plugin/marketplace.json`: revert source object to the github
+  form. Same `ref: "v0.4.0"` pin.
+- No CHANGELOG-worthy plugin behavior change; this is purely the install
+  resolution path.
+
 ## 0.4.1 — 2026-05-07
 
 Fix: `marketplace.json` now matches the official Anthropic schema so
