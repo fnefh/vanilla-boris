@@ -21,6 +21,41 @@ cp -R agents/*    "$TARGET/agents/"
 cp -R hooks/*     "$TARGET/hooks/"
 chmod +x "$TARGET/hooks/"*.sh
 
+# Default settings.local.json template — only written if absent.
+# Per PRD §14: never overwrite user's existing settings.
+if [[ ! -f "$TARGET/settings.local.json" ]]; then
+  cat > "$TARGET/settings.local.json" <<'JSON'
+{
+  "_comment": "Tune this list with /fewer-permission-prompts. Pair with Auto Mode (skills/auto-mode-onboarding) for fewer prompts on safe operations.",
+  "permissions": {
+    "defaultMode": "ask",
+    "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(bun run format *)",
+      "Bash(bun run typecheck *)",
+      "Bash(bun run test *)",
+      "Bash(bq query *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(gh pr merge *)",
+      "Skill(deploy *)"
+    ]
+  },
+  "cleanupPeriodDays": 30
+}
+JSON
+  echo "  wrote $TARGET/settings.local.json (defaults; tune with /permissions)"
+fi
+
 # Per howborisusesclaudecode.com Part 10, tip #4 — verbatim:
 #
 #   # 400k is Thariq's recommended compromise
@@ -59,7 +94,10 @@ fi
 
 echo
 echo "Installed. Open Claude Code and run:"
-echo "    /skills    — verify the 11 skills loaded"
+echo "    /skills    — verify the 12 skills loaded"
 echo "    /commands  — verify the 5 commands"
 echo "    /agents    — verify the 3 agents"
 echo "    bun run wizard.ts  — walk through the optional steps"
+echo
+echo "PermissionRequest.sh ships disabled by default (silent no-op until"
+echo "you set VANILLA_BORIS_PERMREQ_ROUTE). See hooks/PermissionRequest.sh."

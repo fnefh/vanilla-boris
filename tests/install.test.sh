@@ -18,7 +18,7 @@ printf 'n\n' | ./install.sh project >/dev/null
 expected_skills=12
 expected_commands=5
 expected_agents=3
-expected_hooks=6
+expected_hooks=8
 
 # Skills
 got_skills=$(ls -1 .claude/skills 2>/dev/null | wc -l | tr -d ' ')
@@ -35,9 +35,22 @@ got_agents=$(ls -1 .claude/agents 2>/dev/null | wc -l | tr -d ' ')
 # Hooks (count + executable bit)
 got_hooks=$(ls -1 .claude/hooks 2>/dev/null | wc -l | tr -d ' ')
 [[ "$got_hooks" == "$expected_hooks" ]] || { echo "FAIL: hooks $got_hooks/$expected_hooks"; exit 1; }
-for h in UserPromptSubmit.sh PreToolUse.sh PostToolUse.sh SessionStart.sh Stop.sh PostCompact.sh; do
+for h in UserPromptSubmit.sh PreToolUse.sh PostToolUse.sh \
+         SessionStart.sh SessionEnd.sh Stop.sh PostCompact.sh \
+         PermissionRequest.sh; do
   test -x ".claude/hooks/$h" || { echo "FAIL: not executable: $h"; exit 1; }
 done
+
+# v0.3.0 — settings.local.json written on first install
+test -f .claude/settings.local.json || { echo "FAIL: settings.local.json not written"; exit 1; }
+jq -e '.permissions.defaultMode == "ask"' .claude/settings.local.json >/dev/null \
+  || { echo "FAIL: settings.local.json missing permissions.defaultMode"; exit 1; }
+
+# v0.3.0 — plugin.json carries status line + spinner verbs
+jq -e '.settings.subagentStatusLine | length > 0' plugin.json >/dev/null \
+  || { echo "FAIL: plugin.json missing settings.subagentStatusLine"; exit 1; }
+jq -e '.settings.spinnerVerbs | length == 12' plugin.json >/dev/null \
+  || { echo "FAIL: plugin.json spinnerVerbs count != 12"; exit 1; }
 
 # Each named skill present
 for s in north-star three-loop plan-first go verify parallel-worktrees \

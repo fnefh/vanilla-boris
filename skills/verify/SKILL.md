@@ -3,6 +3,21 @@ name: verify
 description: Run this project's verification path — the command(s) that prove a change actually works (tests, type-check, browser check, BQ query, computer-use). Use after any non-trivial edit, before declaring "done", and as the gate inside /go. Pairs with hooks/Stop.sh.
 disable-model-invocation: true
 allowed-tools: Read Bash(bun *) Bash(npm test*) Bash(pnpm test*) Bash(yarn test*) Bash(make *) Bash(pytest *) Bash(go test *) Bash(cargo test *) Bash(curl -s localhost:*)
+paths:
+  - "**/*.test.*"
+  - "**/*.spec.*"
+  - "tests/**"
+  - "__tests__/**"
+  - "spec/**"
+hooks:
+  Stop:
+    - type: command
+      command: |
+        if [[ "${CLAUDE_SESSION_VERIFY_INVOKED:-0}" -eq 0 ]] \
+           && [[ "${CLAUDE_SESSION_EDIT_COUNT:-0}" -gt 0 ]]; then
+          echo "[verify skill] this skill is loaded — run /verify before stop"
+        fi
+      once: false
 ---
 
 > **Reconstruction notice.** Boris calls the verification loop his #1
@@ -44,3 +59,14 @@ Workflow:
 
 This skill exists to break the failure mode where Claude declares "done"
 based on its own narration. Verification beats narration.
+
+## Auto-activation
+
+The `paths:` frontmatter field above auto-loads this skill whenever the
+user is editing test files (`*.test.*`, `*.spec.*`, anything under
+`tests/`, `__tests__/`, or `spec/`). The skill is also user-invokable as
+`/verify` and is wired into the `verifier` agent's `preloadSkills`.
+
+The on-demand `Stop` hook in the frontmatter is session-scoped — it only
+fires while this skill is active, so it complements (without doubling)
+the global `hooks/Stop.sh`.

@@ -1,9 +1,30 @@
 {
   "name": "vanilla-boris",
-  "version": "0.2.0",
-  "description": "Boris-flavored defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop, parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents, and an expanded hook palette.",
+  "version": "0.3.0",
+  "description": "Boris-flavored defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop (with paths: auto-activation), parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents (with preloadSkills), an expanded 7-hook palette including SessionEnd, a vanilla-boris status line, and verification-themed spinner verbs.",
+  "author": {
+    "name": "vanilla-boris contributors"
+  },
+  "license": "MIT",
   "skills": "./skills",
   "commands": "./commands",
   "agents": "./agents",
-  "hooks": "./hooks"
+  "hooks": "./hooks",
+  "settings": {
+    "subagentStatusLine": "vanilla-boris ▸ {model} ▸ {context_pct}% ▸ {git_branch} ▸ {cost}",
+    "spinnerVerbs": [
+      "verifying",
+      "checking",
+      "auditing",
+      "inspecting",
+      "tracing",
+      "validating",
+      "scrutinizing",
+      "weighing",
+      "probing",
+      "testing",
+      "rehearsing",
+      "double-checking"
+    ]
+  }
 }

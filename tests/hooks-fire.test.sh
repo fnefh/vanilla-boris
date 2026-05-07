@@ -77,4 +77,35 @@ out=$(./hooks/PostCompact.sh)
 echo "$out" | grep -q "Compaction done" \
   || { echo "FAIL: PostCompact didn't print reminder"; exit 1; }
 
+# SessionEnd — should print summary.  (NEW in v0.3.0)
+export CLAUDE_SESSION_EDIT_COUNT=2
+export CLAUDE_SESSION_VERIFY_INVOKED=0
+export CLAUDE_CODE_SESSION_ID=test-session
+out=$(./hooks/SessionEnd.sh)
+echo "$out" | grep -q "session end" \
+  || { echo "FAIL: SessionEnd didn't print"; exit 1; }
+echo "$out" | grep -q "edits without /verify" \
+  || { echo "FAIL: SessionEnd didn't nudge"; exit 1; }
+
+# SessionEnd — clean session (verify=1) should not nudge.
+export CLAUDE_SESSION_VERIFY_INVOKED=1
+out=$(./hooks/SessionEnd.sh)
+echo "$out" | grep -qv "edits without /verify" \
+  || { echo "FAIL: SessionEnd nudged despite verify=1"; exit 1; }
+unset CLAUDE_SESSION_EDIT_COUNT CLAUDE_SESSION_VERIFY_INVOKED CLAUDE_CODE_SESSION_ID
+
+# PermissionRequest — silent no-op when not configured.  (NEW in v0.3.0)
+unset VANILLA_BORIS_PERMREQ_ROUTE
+out=$(./hooks/PermissionRequest.sh)
+[[ -z "$out" ]] \
+  || { echo "FAIL: PermissionRequest emitted output despite no route configured: $out"; exit 1; }
+
+# PermissionRequest — slack route without webhook should warn but not fail.
+export VANILLA_BORIS_PERMREQ_ROUTE=slack
+unset VANILLA_BORIS_PERMREQ_SLACK_WEBHOOK
+out=$(./hooks/PermissionRequest.sh)
+echo "$out" | grep -q "no webhook" \
+  || { echo "FAIL: PermissionRequest slack-no-webhook should warn"; exit 1; }
+unset VANILLA_BORIS_PERMREQ_ROUTE
+
 echo "hooks-fire.test.sh OK"

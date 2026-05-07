@@ -81,4 +81,32 @@ console.log("     - Deploy-on-merge canary (trigger: PR merged)");
 console.log("   We do NOT schedule any. Configure connectors via Claude Code's");
 console.log("   settings UI when you're ready.");
 
+// Step 10 — status line + spinner verbs  (NEW in v0.3.0)
+console.log("\n10) Status line & spinner verbs (shipped via plugin.json settings)");
+console.log("    Status line:  vanilla-boris ▸ {model} ▸ {context_pct}% ▸ {git_branch} ▸ {cost}");
+console.log("    Spinner verbs: verifying, checking, auditing, inspecting, ...");
+console.log("    Both are subagent-scoped, so they only apply when our agents spawn.");
+if (await yes("    Print the snippet for setting them session-wide via settings.json?")) {
+  console.log(`    Add to ~/.claude/settings.json:
+      "statusLine": "vanilla-boris ▸ {model} ▸ {context_pct}% ▸ {git_branch}",
+      "spinnerVerbs": ["verifying", "checking", "auditing", "inspecting",
+                       "tracing", "validating", "scrutinizing", "weighing",
+                       "probing", "testing", "rehearsing", "double-checking"]`);
+}
+
+// Step 11 — worktree shell aliases  (NEW in v0.3.0)
+console.log("\n11) Worktree shell aliases (Boris's za/zb/zc trick)");
+console.log("    See references/shell-aliases.md for the full snippet.");
+if (await yes("    Print the zsh aliases now?")) {
+  console.log(`    alias za='cd "$(git rev-parse --show-toplevel)/.claude/worktrees/a" && claude --worktree a'
+    alias zb='cd "$(git rev-parse --show-toplevel)/.claude/worktrees/b" && claude --worktree b'
+    alias zc='cd "$(git rev-parse --show-toplevel)/.claude/worktrees/c" && claude --worktree c'`);
+}
+
+// Step 12 — env-vars summary  (NEW in v0.3.0)
+console.log("\n12) Env vars cheatsheet");
+console.log("    Boris's site mentions 84 env vars; the docs list 102+. The");
+console.log("    high-value subset is documented in references/env-vars.md");
+console.log("    (compaction, effort, hooks, worktrees, plugin-defined).");
+
 console.log("\nDone.");

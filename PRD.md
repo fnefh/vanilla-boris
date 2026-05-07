@@ -3,13 +3,16 @@
 > the working habits described on https://howborisusesclaudecode.com/ and
 > in @bcherny's public threads.
 >
-> **v3** — expanded to track the site's full ~25-habit surface (verification
-> loop, parallel worktrees, Auto Mode, routines, the @claude bot, Opus 4.7
-> behavioral shifts, richer hooks, agents, and team commands). Per the
-> official skills docs (https://code.claude.com/docs/en/slash-commands),
-> skills supersede the older custom-commands surface for *content*, but
-> Anthropic still ships a parallel `.claude/commands/` directory for
-> repeat-invocation team conveniences — v3 uses both.
+> **v3.1 (plugin v0.3.0)** — built from a deep re-audit of the site
+> (~500-item bullet-by-bullet inventory, cross-checked against
+> code.claude.com/docs). v0.2.0 covered the section-level habits;
+> v0.3.0 closes the configurability gap: the status line and spinner
+> verbs are now actually shipped (not just docs-only), the hook palette
+> grows to 8 (added `SessionEnd.sh` and an opt-in `PermissionRequest.sh`),
+> the `verify` skill auto-activates on test files via `paths:`, the
+> `verifier` agent uses `preloadSkills`, and `install.sh` writes a
+> default `settings.local.json` template with the autonomy-ladder
+> default mode wired in.
 >
 > Drop this file into a fresh Claude Code session and say
 > *"build the repo described in this PRD."*
@@ -51,6 +54,18 @@ Each row below is one claim this PRD makes. Trust levels:
 | 0.20 | Sample agents (`code-reviewer`, `verifier`, `simplifier`) | Modeled on Boris's site descriptions; bodies are ours | 🟡 reconstruction |
 | 0.21 | Hook contents (UserPromptSubmit, PreToolUse, PostToolUse, PostCompact, SessionStart, Stop) | Behavior is described on the site; exact shell is ours | 🟡 ours |
 | 0.22 | Wizard, install/uninstall, tests, default permissions | Team-derived defaults | 🟡 ours |
+| 0.23 | **Status line template** (`vanilla-boris ▸ {model} ▸ {context_pct}% ▸ {git_branch} ▸ {cost}`) | Site §"Customization & Configuration" specifies these 4 fields verbatim; the template wording is ours | ✅ verbatim fields, 🟡 ours wording |
+| 0.24 | **12 verification-themed spinner verbs** | Site mentions spinner verbs are customizable (Star Trek example); our list is verification-themed to match the plugin's #1 principle | 🟡 ours |
+| 0.25 | **`SessionEnd` hook (the 7th hook type)** | Implied by `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` in code.claude.com/docs; site lists SessionStart but not SessionEnd | ✅ docs-derived |
+| 0.26 | **`PermissionRequest` routing to Slack/WhatsApp/Opus** | Site §"Hooks & Lifecycle Logic" verbatim cites this routing | ✅ verbatim, 🟡 our shell impl |
+| 0.27 | **`paths:` glob auto-activation on `verify` skill** | Skill frontmatter feature in code.claude.com/docs; the choice to apply it to `verify` (test-file globs) is ours | ✅ docs-derived, 🟡 our paths list |
+| 0.28 | **On-demand hooks scoped to a skill** (`hooks:` field on `verify`) | Site §"Skill Development & Distribution" best practices verbatim | ✅ verbatim |
+| 0.29 | **`preloadSkills` on `verifier` agent** | Agent frontmatter feature in code.claude.com/docs | ✅ docs-derived |
+| 0.30 | **102+ env vars cheatsheet** (`references/env-vars.md`) | Site says "84 environment variables"; full list is in code.claude.com/docs | ✅ docs-derived |
+| 0.31 | **Worktree shell aliases (`za`/`zb`/`zc`)** | Site §"Workspace Management" verbatim | ✅ verbatim |
+| 0.32 | **4-layer permission mechanism** (prompt-injection detection + static analysis + sandboxing + oversight) | Site §"Permissions & Safety" verbatim — auto mode is fast-path on layer 4 | ✅ verbatim |
+| 0.33 | **Routine connector list** (GitHub, Linear, Slack, WhatsApp, Asana, GDrive, dbt, Grafana) | Site §"Tool Integrations & MCPs" verbatim | ✅ verbatim |
+| 0.34 | **Boris-named-skills attribution** (`references/boris-named-skills.md`) | Names cited verbatim from site; this is *attribution*, not reconstruction | ✅ verbatim names |
 
 **What we will not do:** claim authorship of anything Boris wrote, ship his
 private files, enable `--dangerously-skip-permissions` by default, install
@@ -89,7 +104,13 @@ reconstructions relocate from `skills/` to `commands/`, since
    `/commit-push-pr`, `/install-github-action`, `/sandbox`, `/effort`,
    `/permissions`, `/statusline`, `/voice`, `/color`, `/focus`, `/branch`,
    `/teleport`, `/rewind`, `/memory`, `/dream`, `/btw`, `/techdebt`,
-   `/fewer-permission-prompts`, `/keybindings`, `/terminal-setup`, `/vim`.
+   `/fewer-permission-prompts`, `/keybindings`, `/terminal-setup`, `/vim`,
+   `/init`, `/skills`, `/agents`, `/upgrade`, `/help`, `/desktop`,
+   `/add-dir`, `/remote-control`, `/agent-teams`. Two of these
+   (`/review`, `/security-review`) are bundled review commands that
+   **complement** our `code-reviewer` agent — Boris uses both. Our
+   agent is not a replacement; it's a different shape (multi-concern
+   diff review with `isolation: worktree`).
 2. **Don't ship Boris's private skills.** `/babysit`, `/go`,
    `/post-merge-sweeper`, `/pr-pruner`, `/slack-feedback`, `/verify`,
    `/full-brief`, `/challenge-me` are reconstructions, plainly labeled.
@@ -174,10 +195,26 @@ Severity tags: **P0** = principle-level, **P1** = significant-workflow,
   you know now, scrap this and implement elegantly" / spec-first →
   `skills/challenge-me/SKILL.md` (reconstruction).
 
-### Customization (P2, docs-only)
+### Customization (mixed: shipped + docs-only)
 
-- Output styles, status line, spinner verbs, voice, vim, fast mode,
-  keybindings → `references/customization.md`.
+| # | Item | Severity | Where |
+|---|---|---|---|
+| 26 | **Status line** (subagent-scoped) | **P0 NEW in v0.3.0** | `plugin.json` `settings.subagentStatusLine` + `references/customization.md` (session-wide via `/statusline`) |
+| 27 | **Spinner verbs** (12 verification-themed) | **P1 NEW in v0.3.0** | `plugin.json` `settings.spinnerVerbs` |
+| 28 | **`SessionEnd` hook** | **P0 NEW in v0.3.0** | `hooks/SessionEnd.sh` |
+| 29 | **`paths:` auto-activation on `verify`** | **P0 NEW in v0.3.0** | `skills/verify/SKILL.md` |
+| 30 | **On-demand hooks** (`hooks:` field on `verify`) | **P1 NEW in v0.3.0** | `skills/verify/SKILL.md` |
+| 31 | **`preloadSkills` on `verifier` agent** | **P1 NEW in v0.3.0** | `agents/verifier.md` |
+| 32 | **`PermissionRequest` routing** (opt-in) | **P1 NEW in v0.3.0** | `hooks/PermissionRequest.sh` |
+| 33 | **`Stop.sh` notifications** (sound + Slack, opt-in) | **P2 NEW in v0.3.0** | `hooks/Stop.sh` |
+| 34 | **102+ env vars cheatsheet** | **P2 NEW in v0.3.0** | `references/env-vars.md` |
+| 35 | **Worktree shell aliases** (`za`/`zb`/`zc`) | **P2 NEW in v0.3.0** | `references/shell-aliases.md` |
+| 36 | **CLI flag docs** (`--bare`, `--resume`, `-w`, etc.) | **P2 NEW in v0.3.0** | `references/cli-flags.md` |
+| 37 | **Boris-named-skills attribution** | **P2 NEW in v0.3.0** | `references/boris-named-skills.md` |
+| 38 | **Routine connectors expanded** (GH/Linear/Slack/WA/Asana/GDrive/dbt/Grafana) | P1 NEW in v0.3.0 | `references/routine-recipes.md` |
+| 39 | **4-layer permission mechanism** (PI detection + static + sandbox + oversight) | P1 NEW in v0.3.0 | `references/sandbox.md` |
+| 40 | **Default settings.local.json template** (writes `permissions.defaultMode: "ask"`) | P1 NEW in v0.3.0 | `install.sh` |
+| 41 | Output styles, voice, vim, fast mode, keybindings, recaps | P2 docs-only | `references/customization.md` |
 
 ---
 
@@ -224,10 +261,12 @@ vanilla-boris/
 ├── hooks/
 │   ├── UserPromptSubmit.sh
 │   ├── PreToolUse.sh
+│   ├── PostToolUse.sh                 # NEW in v0.2.0
+│   ├── SessionStart.sh                # NEW in v0.2.0
+│   ├── SessionEnd.sh                  # NEW in v0.3.0
+│   ├── Stop.sh                        # NEW in v0.2.0; extended in v0.3.0
 │   ├── PostCompact.sh
-│   ├── SessionStart.sh                # NEW
-│   ├── PostToolUse.sh                 # NEW
-│   └── Stop.sh                        # NEW
+│   └── PermissionRequest.sh           # NEW in v0.3.0 (opt-in)
 │
 ├── references/
 │   ├── boris-claude-md.txt            # verbatim @bcherny excerpt + attribution
@@ -242,8 +281,12 @@ vanilla-boris/
 │   ├── sandbox.md                     # NEW
 │   ├── github-bot.md                  # NEW
 │   ├── compounding-engineering.md     # NEW
-│   ├── customization.md               # NEW
-│   └── worktree-recipes.md            # NEW
+│   ├── customization.md               # NEW in v0.2.0; extended in v0.3.0
+│   ├── worktree-recipes.md            # NEW in v0.2.0
+│   ├── env-vars.md                    # NEW in v0.3.0
+│   ├── shell-aliases.md               # NEW in v0.3.0
+│   ├── boris-named-skills.md          # NEW in v0.3.0
+│   └── cli-flags.md                   # NEW in v0.3.0
 │
 └── tests/
     ├── install.test.sh
@@ -260,14 +303,42 @@ vanilla-boris/
 ```json
 {
   "name": "vanilla-boris",
-  "version": "0.2.0",
-  "description": "Boris-flavored defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop, parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents, and an expanded hook palette.",
+  "version": "0.3.0",
+  "description": "Boris-flavored defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop (with paths: auto-activation), parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents (with preloadSkills), an expanded 7-hook palette including SessionEnd, a vanilla-boris status line, and verification-themed spinner verbs.",
+  "author": {
+    "name": "vanilla-boris contributors"
+  },
+  "license": "MIT",
   "skills": "./skills",
   "commands": "./commands",
   "agents": "./agents",
-  "hooks": "./hooks"
+  "hooks": "./hooks",
+  "settings": {
+    "subagentStatusLine": "vanilla-boris ▸ {model} ▸ {context_pct}% ▸ {git_branch} ▸ {cost}",
+    "spinnerVerbs": [
+      "verifying",
+      "checking",
+      "auditing",
+      "inspecting",
+      "tracing",
+      "validating",
+      "scrutinizing",
+      "weighing",
+      "probing",
+      "testing",
+      "rehearsing",
+      "double-checking"
+    ]
+  }
 }
 ```
+
+The `settings.subagentStatusLine` and `settings.spinnerVerbs` fields are
+**subagent-scoped** — they apply when our agents (`code-reviewer`,
+`verifier`, `simplifier`) spawn but do not override the user's
+session-wide status line. To set those session-wide, use `/statusline`
+or write `statusLine` and `spinnerVerbs` to the user's `settings.json`
+directly.
 
 ---
 
@@ -1874,10 +1945,11 @@ console.log("\nDone.");
 
 ## 15. Acceptance criteria
 
-A fresh clone of `vanilla-boris` v0.2.0 is "done" when, on a fresh repo:
+A fresh clone of `vanilla-boris` v0.3.0 is "done" when, on a fresh repo:
 
-1. `./install.sh project` finishes idempotently and writes 11 skills + 5
-   commands + 3 agents + 6 hooks under `.claude/`.
+1. `./install.sh project` finishes idempotently and writes 12 skills + 5
+   commands + 3 agents + 8 hooks under `.claude/`, plus a
+   `.claude/settings.local.json` template (only on first install).
 2. `./install.sh project` declines to touch `~/.zshrc` unless the user
    types `y`.
 3. `claude --print "/skills"` lists all 11 skills with their descriptions.
@@ -1911,8 +1983,19 @@ A fresh clone of `vanilla-boris` v0.2.0 is "done" when, on a fresh repo:
 17. No skill, command, agent, or hook ever invokes
     `--dangerously-skip-permissions`. Grep proves it:
     `! grep -r 'dangerously-skip-permissions' .`.
-18. `plugin.json` is `0.2.0` and `CHANGELOG.md` records the v2→v3 site
-    revision driving the expansion.
+18. `plugin.json` is `0.3.0`, declares `settings.subagentStatusLine`,
+    and ships exactly 12 verification-themed `settings.spinnerVerbs`.
+19. `hooks/SessionEnd.sh` exists, is executable, and prints a session
+    summary including a "/verify reminder" line when
+    `CLAUDE_SESSION_VERIFY_INVOKED=0` and `CLAUDE_SESSION_EDIT_COUNT>0`.
+20. `hooks/PermissionRequest.sh` exists and is a silent no-op when
+    `VANILLA_BORIS_PERMREQ_ROUTE` is unset.
+21. `skills/verify/SKILL.md` declares `paths: ["**/*.test.*", "**/*.spec.*", "tests/**", "__tests__/**", "spec/**"]` and an on-demand `Stop` hook in its `hooks:` field.
+22. `agents/verifier.md` declares `preloadSkills: [verify]` and
+    `defaultPermissionMode: ask`.
+23. `references/{env-vars,shell-aliases,boris-named-skills,cli-flags}.md`
+    all exist and cite their sources (site or code.claude.com/docs).
+24. `CHANGELOG.md` records both the v0.2.0 and v0.3.0 entries.
 
 ---
 
@@ -1952,6 +2035,47 @@ A fresh clone of `vanilla-boris` v0.2.0 is "done" when, on a fresh repo:
 
 ```markdown
 # Changelog
+
+## 0.3.0 — 2026-05-07
+
+Site re-audit revision tracked: howborisusesclaudecode.com as of
+2026-05-07 (full bullet-by-bullet inventory, ~500 distinct items),
+cross-referenced with code.claude.com/docs.
+
+Added (configurable knobs, was docs-only):
+- `plugin.json` `settings.subagentStatusLine` — vanilla-boris status line.
+- `plugin.json` `settings.spinnerVerbs` — 12 verification-themed verbs.
+- `plugin.json` `author` and `license` metadata.
+
+Added (hooks): SessionEnd.sh, PermissionRequest.sh (opt-in). Stop.sh
+extended with optional sound + Slack notification gates.
+
+Added (skill/agent capabilities):
+- `skills/verify/SKILL.md` — `paths:` glob auto-activation + `hooks:`
+  on-demand `Stop` hook (the on-demand hooks pattern from skill best
+  practices).
+- `agents/verifier.md` — `preloadSkills: [verify]` and
+  `defaultPermissionMode: ask`.
+
+Added (references): env-vars.md, shell-aliases.md,
+boris-named-skills.md, cli-flags.md.
+
+Extended (references): routine-recipes.md (full connector list),
+sandbox.md (4-layer permission mechanism), customization.md
+(pointers to new refs; documents shipped status line + spinner verbs).
+
+Added (defaults): `install.sh` writes `.claude/settings.local.json`
+template on first install (never overwrites). Includes
+`permissions.defaultMode: "ask"` and `cleanupPeriodDays: 30`.
+
+Wizard: 9 → 12 steps. New: status line/spinner preview, shell aliases
+snippet, env-vars cheatsheet pointer.
+
+PRD §2 non-goals: extended to declare we don't shadow `/init`,
+`/review`, `/security-review`, `/skills`, `/agents`, `/upgrade`,
+`/help`, `/desktop`, `/add-dir`, `/remote-control`, `/agent-teams`.
+`/review` and `/security-review` are explicitly **complementary** to
+our `code-reviewer` agent.
 
 ## 0.2.0 — 2026-05-07
 

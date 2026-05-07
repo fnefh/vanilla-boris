@@ -28,8 +28,20 @@ laptop closed.
 
 ## Connectors
 
-GitHub, Linear, custom API endpoints. Connector tokens live in your
-account, not in this repo.
+Per howborisusesclaudecode.com, the bundled connector set is broader
+than the four we listed in v0.2.0:
+
+- **GitHub** — PR/issue/release/check_run events.
+- **Linear** — issue lifecycle, project events.
+- **Slack** — channel posts, search results, mentions.
+- **WhatsApp** — message-driven triggers.
+- **Asana** — task-state changes.
+- **Google Drive** — file-event triggers.
+- **dbt** — model-run events for analytics-engineering routines.
+- **Grafana** — alert webhooks.
+- **Custom API endpoints** — any service that can POST a JSON payload.
+
+Connector tokens live in your account, not in this repo.
 
 ## When to use Routines vs /loop
 

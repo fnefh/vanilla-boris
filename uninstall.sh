@@ -30,7 +30,8 @@ done
 
 # Hooks (only remove if it's our copy — compare against the repo's version)
 for h in UserPromptSubmit.sh PreToolUse.sh PostToolUse.sh \
-         SessionStart.sh Stop.sh PostCompact.sh; do
+         SessionStart.sh SessionEnd.sh Stop.sh PostCompact.sh \
+         PermissionRequest.sh; do
   if [[ -f "$TARGET/hooks/$h" ]] && cmp -s "hooks/$h" "$TARGET/hooks/$h"; then
     rm -f "$TARGET/hooks/$h"
   fi

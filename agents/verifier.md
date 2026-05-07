@@ -4,6 +4,9 @@ description: Runs the project's verify command (per skills/verify), reports the 
 model: opus
 tools: Read Bash(bun *) Bash(npm *) Bash(pnpm *) Bash(yarn *) Bash(make *) Bash(pytest *) Bash(go test *) Bash(cargo test *) Bash(curl -s localhost:*)
 isolation: worktree
+preloadSkills:
+  - verify
+defaultPermissionMode: ask
 ---
 
 You are the verification gate. Do exactly this:
@@ -21,3 +24,12 @@ You are the verification gate. Do exactly this:
    - Any warnings worth surfacing.
 5. **Do not patch anything.** If verification fails, return the failure
    and stop. The orchestrator decides what to do.
+
+The `preloadSkills: [verify]` frontmatter ensures the `verify` skill's
+project-snapshot dynamic context (CLAUDE.md verify line, package.json
+test scripts, Makefile targets) is already loaded when this agent
+spawns — no extra round-trip to /verify.
+
+`defaultPermissionMode: ask` keeps this agent at autonomy-ladder rung 2
+(suggest) regardless of session-wide Auto Mode — the verify gate should
+not silently approve risky operations even when the orchestrator has.
