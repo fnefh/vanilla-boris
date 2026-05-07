@@ -1,0 +1,30 @@
+{
+  "_comment": "Plugin-shipped background monitors. Per code.claude.com/docs/en/plugins, monitors run a long-lived shell command and notify Claude when its output produces new lines. ALL ENTRIES BELOW ARE COMMENTED OUT — uncomment what you actually want and adjust paths.",
+  "monitors": [
+
+    {
+      "_comment": "Watch a build/error log. Uncomment 'enabled' to activate.",
+      "name": "build-log",
+      "enabled": false,
+      "command": "tail -F .claude/build.log",
+      "description": "Watch the build log; surface new errors to Claude."
+    },
+
+    {
+      "_comment": "Watch CI by polling the gh CLI every 30s. Disabled by default; needs gh auth.",
+      "name": "ci-watch",
+      "enabled": false,
+      "command": "while true; do gh run list --limit 1 --json status,conclusion --jq '.[0] | \"\\(.status) \\(.conclusion // \"-\")\"'; sleep 30; done",
+      "description": "Surface CI status changes; pairs with verify-loop."
+    },
+
+    {
+      "_comment": "Watch a verify-loop output stream. Uncomment after wiring the project's verify command.",
+      "name": "verify-stream",
+      "enabled": false,
+      "command": "tail -F .claude/verify.log",
+      "description": "Surface verify-command output as it produces lines."
+    }
+
+  ]
+}

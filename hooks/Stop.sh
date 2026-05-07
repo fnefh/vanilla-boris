@@ -26,9 +26,13 @@ if [[ "${VANILLA_BORIS_NOTIFY_SOUND:-0}" == "1" ]] && command -v afplay >/dev/nu
   afplay /System/Library/Sounds/Glass.aiff >/dev/null 2>&1 &
 fi
 
-# Optional: Slack ping on stop (best-effort).
+# Optional: Slack ping on stop (fire-and-forget; backgrounded so the
+# session-stop sequence doesn't block on slow Slack DNS/TLS).
+# code.claude.com/docs/en/hooks documents `async: true` for config-
+# level hooks; this shell-hook variant uses `&` for the same effect.
 if [[ -n "${VANILLA_BORIS_NOTIFY_SLACK:-}" ]] && [[ "$needs_nudge" -eq 1 ]]; then
   payload="{\"text\":\":warning: Claude Code session stopped with $edits edits but no /verify.\"}"
-  curl -fsS -X POST -H 'Content-Type: application/json' \
-       -d "$payload" "$VANILLA_BORIS_NOTIFY_SLACK" >/dev/null 2>&1 || true
+  (curl -fsS -X POST -H 'Content-Type: application/json' \
+        -d "$payload" "$VANILLA_BORIS_NOTIFY_SLACK" >/dev/null 2>&1 || true) &
+  disown 2>/dev/null || true
 fi

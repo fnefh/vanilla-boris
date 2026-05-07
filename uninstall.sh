@@ -30,12 +30,26 @@ done
 
 # Hooks (only remove if it's our copy — compare against the repo's version)
 for h in UserPromptSubmit.sh PreToolUse.sh PostToolUse.sh \
-         SessionStart.sh SessionEnd.sh Stop.sh PostCompact.sh \
-         PermissionRequest.sh; do
+         SessionStart.sh SessionEnd.sh Stop.sh PreCompact.sh \
+         PostCompact.sh PermissionRequest.sh; do
   if [[ -f "$TARGET/hooks/$h" ]] && cmp -s "hooks/$h" "$TARGET/hooks/$h"; then
     rm -f "$TARGET/hooks/$h"
   fi
 done
+
+# v0.4.0 surfaces.
+for f in vb-verify vb-snapshot; do
+  rm -f "$TARGET/bin/$f"
+done
+rmdir "$TARGET/bin" 2>/dev/null || true
+
+for o in boris-productivity.md; do
+  rm -f "$TARGET/output-styles/$o"
+done
+rmdir "$TARGET/output-styles" 2>/dev/null || true
+
+rm -f "$TARGET/monitors/monitors.json"
+rmdir "$TARGET/monitors" 2>/dev/null || true
 
 if [[ "${2:-}" == "--shell" ]]; then
   for rc in "$HOME/.zshrc" "$HOME/.bashrc"; do

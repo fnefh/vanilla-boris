@@ -2,6 +2,9 @@
 name: babysit
 description: Watch the current PR — auto-address review comments, auto-rebase on conflict, surface anything that needs human judgment. Reconstruction of the skill Boris references in his tweet "/loop 5m /babysit".
 allowed-tools: Bash(gh pr *) Bash(git fetch *) Bash(git rebase *) Bash(git push *) Read Edit
+arguments:
+  - pr_num
+argument-hint: "[pr_num=current-branch-PR]"
 ---
 
 > **Reconstruction notice.** Boris named `/babysit` in his Mar 30 2026

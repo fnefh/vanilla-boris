@@ -20,3 +20,15 @@ Notes:
   such inside each file.
 - Cadence guidance per the tweet: "for up to a week at a time."
 - For cloud-side scheduling (laptop closed) see `routine-recipes.md`.
+
+## `/batch` scale (Boris, Mar 30 2026 thread)
+
+> "`/batch` fans out to **dozens, hundreds, or thousands** of worktree
+> agents."
+
+This is much larger than typical `/loop` cadences. `/batch` is the
+right tool for repository-wide migrations (rename one symbol across
+40+ files, add a license header to every source file, port every test
+file to a new framework). Use sparingly and always with a verify
+command (see `skills/verify`) — at thousand-agent scale, even a 0.1%
+error rate is many bad PRs.

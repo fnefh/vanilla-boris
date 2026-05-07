@@ -1,7 +1,7 @@
 {
   "name": "vanilla-boris",
-  "version": "0.3.0",
-  "description": "Boris-flavored defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop (with paths: auto-activation), parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents (with preloadSkills), an expanded 7-hook palette including SessionEnd, a vanilla-boris status line, and verification-themed spinner verbs.",
+  "version": "0.4.0",
+  "description": "Boris-flavored defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop (with paths: auto-activation, context: fork), parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents (with preloadSkills), a 9-hook palette including SessionEnd and PreCompact, a vanilla-boris status line, verification-themed spinner verbs, an opt-in boris-productivity output style, a learn-codebase skill, and bundled bin/ helpers.",
   "author": {
     "name": "vanilla-boris contributors"
   },

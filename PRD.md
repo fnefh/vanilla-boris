@@ -3,16 +3,18 @@
 > the working habits described on https://howborisusesclaudecode.com/ and
 > in @bcherny's public threads.
 >
-> **v3.1 (plugin v0.3.0)** — built from a deep re-audit of the site
-> (~500-item bullet-by-bullet inventory, cross-checked against
-> code.claude.com/docs). v0.2.0 covered the section-level habits;
-> v0.3.0 closes the configurability gap: the status line and spinner
-> verbs are now actually shipped (not just docs-only), the hook palette
-> grows to 8 (added `SessionEnd.sh` and an opt-in `PermissionRequest.sh`),
-> the `verify` skill auto-activates on test files via `paths:`, the
-> `verifier` agent uses `preloadSkills`, and `install.sh` writes a
-> default `settings.local.json` template with the autonomy-ladder
-> default mode wired in.
+> **v3.2 (plugin v0.4.0)** — third research pass added Anthropic-docs
+> features we weren't using (marketplace.json, plugin-level
+> .claude-plugin/settings.json, output-styles/, bin/, monitors/,
+> PreCompact hook, skill `context: fork` + `effort` + `model`
+> overrides, command `arguments` + `argument-hint`) plus Boris content
+> from sources beyond his site (InfoQ "Inside the Development
+> Workflow of Claude Code's Creator" Jan 2026, Pragmatic Engineer
+> interview, the transcribed Mar 30 2026 hidden-features thread).
+> Notable: corrected worktree aliases to Boris's actual `2a/2b/2c`
+> form, extended permissions to Boris's actual `bun run build:*`/
+> `cc:*` patterns, and added a `learn-codebase` reconstruction for his
+> HTML-presentation pattern. Hook palette grows to 9.
 >
 > Drop this file into a fresh Claude Code session and say
 > *"build the repo described in this PRD."*
@@ -66,6 +68,26 @@ Each row below is one claim this PRD makes. Trust levels:
 | 0.32 | **4-layer permission mechanism** (prompt-injection detection + static analysis + sandboxing + oversight) | Site §"Permissions & Safety" verbatim — auto mode is fast-path on layer 4 | ✅ verbatim |
 | 0.33 | **Routine connector list** (GitHub, Linear, Slack, WhatsApp, Asana, GDrive, dbt, Grafana) | Site §"Tool Integrations & MCPs" verbatim | ✅ verbatim |
 | 0.34 | **Boris-named-skills attribution** (`references/boris-named-skills.md`) | Names cited verbatim from site; this is *attribution*, not reconstruction | ✅ verbatim names |
+| 0.35 | **`marketplace.json`** at repo root for `/plugin install` distribution | code.claude.com/docs/en/plugins | ✅ docs-derived |
+| 0.36 | **`.claude-plugin/settings.json`** plugin-level defaults | code.claude.com/docs/en/plugins ("Ship default settings with your plugin") | ✅ docs-derived |
+| 0.37 | **`bin/` directory** auto-added to Bash PATH | code.claude.com/docs/en/plugins-reference | ✅ docs-derived feature; `vb-verify` / `vb-snapshot` bodies are 🟡 ours |
+| 0.38 | **`output-styles/boris-productivity.md`** | code.claude.com/docs/en/output-styles (feature); voice content reconstructed from site + Jan 2 CLAUDE.md excerpt | ✅ feature, 🟡 voice reconstruction |
+| 0.39 | **`monitors/monitors.json`** background-command monitors | code.claude.com/docs/en/plugins ("Add background monitors to your plugin") | ✅ docs-derived (entries are 🟡 ours, all disabled) |
+| 0.40 | **`PreCompact` hook** as 9th hook type | code.claude.com/docs/en/hooks-reference | ✅ docs-derived |
+| 0.41 | **Skill `context: fork`** on `verify` and `challenge-me` | code.claude.com/docs/en/skills ("Run skills in a subagent") | ✅ docs-derived |
+| 0.42 | **Skill `effort` / `model` overrides** on `full-brief` and `challenge-me` | code.claude.com/docs/en/skills | ✅ docs-derived |
+| 0.43 | **Command `arguments` + `argument-hint`** on `pr-pruner` and `babysit` | code.claude.com/docs/en/skills (commands share frontmatter) | ✅ docs-derived |
+| 0.44 | **Boris's CLAUDE.md size: ~2,500 tokens** | InfoQ "Inside the Development Workflow of Claude Code's Creator" (Jan 2026 interview) | ✅ verbatim from interview |
+| 0.45 | **Boris's worktree aliases: `2a` / `2b` / `2c`** | InfoQ + Mar 30 2026 thread (transcribed in shanraisshan/claude-code-best-practice) | ✅ verbatim |
+| 0.46 | **Boris's `/permissions` allow patterns: `bun run build:*`, `bun run test:*`, `cc:*`** | InfoQ | ✅ verbatim |
+| 0.47 | **10–20% of sessions abandoned** when plan diverges | InfoQ | ✅ verbatim |
+| 0.48 | **`/batch` scale: "dozens, hundreds, or thousands"** of worktree agents | Mar 30 2026 thread | ✅ verbatim |
+| 0.49 | **Chrome extension > MCP-based browser tools** for verification | Mar 30 2026 thread | ✅ verbatim |
+| 0.50 | **Cowork Dispatch daily usage** for Slack/email/file catch-up | Mar 30 2026 thread | ✅ verbatim |
+| 0.51 | **HTML-presentation pattern** for explaining unfamiliar code | Mar 30 2026 thread (`learn-codebase` skill is our reconstruction) | ✅ verbatim pattern, 🟡 our reconstruction |
+| 0.52 | **PreToolUse narrowing** to actually-risky patterns | code.claude.com/docs/en/permissions ("permission rule syntax" `if:` filter) — emulated in shell hook | ✅ docs-derived feature, 🟡 our shell impl |
+| 0.53 | **PostToolUse `duration_ms` perf guardian** | code.claude.com release notes 2.1.x | ✅ docs-derived |
+| 0.54 | **Async Stop.sh Slack notify** (fire-and-forget) | code.claude.com/docs/en/hooks `async: true`; emulated in shell with `&` | ✅ docs-derived |
 
 **What we will not do:** claim authorship of anything Boris wrote, ship his
 private files, enable `--dangerously-skip-permissions` by default, install
@@ -1945,11 +1967,14 @@ console.log("\nDone.");
 
 ## 15. Acceptance criteria
 
-A fresh clone of `vanilla-boris` v0.3.0 is "done" when, on a fresh repo:
+A fresh clone of `vanilla-boris` v0.4.0 is "done" when, on a fresh repo:
 
-1. `./install.sh project` finishes idempotently and writes 12 skills + 5
-   commands + 3 agents + 8 hooks under `.claude/`, plus a
-   `.claude/settings.local.json` template (only on first install).
+1. `./install.sh project` finishes idempotently and writes 13 skills + 5
+   commands + 3 agents + 9 hooks under `.claude/`, plus
+   `.claude/settings.local.json` template (first install only),
+   `.claude/bin/{vb-verify,vb-snapshot}` (executable),
+   `.claude/output-styles/boris-productivity.md`, and
+   `.claude/monitors/monitors.json` (entries disabled by default).
 2. `./install.sh project` declines to touch `~/.zshrc` unless the user
    types `y`.
 3. `claude --print "/skills"` lists all 11 skills with their descriptions.
@@ -1995,7 +2020,21 @@ A fresh clone of `vanilla-boris` v0.3.0 is "done" when, on a fresh repo:
     `defaultPermissionMode: ask`.
 23. `references/{env-vars,shell-aliases,boris-named-skills,cli-flags}.md`
     all exist and cite their sources (site or code.claude.com/docs).
-24. `CHANGELOG.md` records both the v0.2.0 and v0.3.0 entries.
+24. `CHANGELOG.md` records both the v0.2.0, v0.3.0, and v0.4.0 entries.
+25. `marketplace.json` exists at repo root and `jq '.plugins[0].name'` is
+    `"vanilla-boris"`. (Local-path stub OK; flippable to a public URL.)
+26. `.claude-plugin/settings.json` exists at repo root with
+    `permissions.defaultMode: "ask"` and 12 spinner verbs.
+27. `monitors/monitors.json` has at least one entry; **none** are
+    enabled by default (`.enabled === false` for all).
+28. `output-styles/boris-productivity.md` exists with `name`,
+    `description`, `keep-coding-instructions: true`, and is documented
+    as opt-in.
+29. `skills/learn-codebase/SKILL.md` exists with a Reconstruction
+    notice and `context: fork`.
+30. `hooks/PreCompact.sh` exists, is executable, and writes to
+    `.claude/session-notes/<sid>.md` when fired.
+31. `plugin.json` is `0.4.0`.
 
 ---
 

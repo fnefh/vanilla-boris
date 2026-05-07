@@ -1,0 +1,44 @@
+{
+  "_comment": "Plugin-level defaults that auto-apply when vanilla-boris is enabled. These travel WITH the plugin (unlike the per-project .claude/settings.local.json install.sh writes). Per code.claude.com/docs/en/plugins ('Ship default settings with your plugin'), keys here augment but do not override the user's existing settings.",
+  "subagentStatusLine": "vanilla-boris ▸ {model} ▸ {context_pct}% ▸ {git_branch} ▸ {cost}",
+  "permissions": {
+    "defaultMode": "ask",
+    "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git fetch *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(bun run build:*)",
+      "Bash(bun run test:*)",
+      "Bash(bun run typecheck *)",
+      "Bash(bun run format *)",
+      "Bash(cc:*)",
+      "Bash(bq query *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(gh pr merge *)",
+      "Skill(deploy *)"
+    ]
+  },
+  "spinnerVerbs": [
+    "verifying",
+    "checking",
+    "auditing",
+    "inspecting",
+    "tracing",
+    "validating",
+    "scrutinizing",
+    "weighing",
+    "probing",
+    "testing",
+    "rehearsing",
+    "double-checking"
+  ]
+}

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# vb-verify — run this project's verify command (declared in CLAUDE.md
+# under "How to verify a change works"). Per howborisusesclaudecode.com
+# §"Verification Loop". Bundled into PATH while the vanilla-boris plugin
+# is enabled (.claude/bin → PATH).
+set -euo pipefail
+
+verify_line=$(grep -A1 -i 'how to verify\|verify command' CLAUDE.md 2>/dev/null \
+              | tail -1 \
+              | sed 's/^[[:space:]]*[-*][[:space:]]*//' || true)
+
+if [[ -z "${verify_line:-}" ]]; then
+  echo "vb-verify: no verify command found in CLAUDE.md."
+  echo "  Add a section 'How to verify a change works' with the command."
+  echo "  Falling back to: bun typecheck && bun test"
+  bun typecheck && bun test
+  exit $?
+fi
+
+echo "vb-verify: $verify_line"
+eval "$verify_line"

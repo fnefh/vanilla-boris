@@ -2,6 +2,8 @@
 name: challenge-me
 description: Apply Boris's adversarial prompting patterns — "grill me", "prove it works", "scrap it and do it elegantly" — to push past Claude's first acceptable answer. Use when the first solution feels rushed, when the user said "are you sure", or before opening a PR for non-trivial work.
 disable-model-invocation: true
+model: opus
+context: fork
 ---
 
 > **Reconstruction notice.** howborisusesclaudecode.com §"Prompting

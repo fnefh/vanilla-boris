@@ -2,6 +2,7 @@
 name: full-brief
 description: Write a full-context brief before delegating to Claude — goal, constraints, acceptance criteria, verification path. Reconstruction of the Opus 4.7 delegation pattern Boris describes ("treat Claude like an engineer you delegate to, not a pair programmer"). Use when the user is about to start a non-trivial task or said "delegate this".
 disable-model-invocation: true
+effort: xhigh
 ---
 
 > **Reconstruction notice.** howborisusesclaudecode.com §"Key Behavioral

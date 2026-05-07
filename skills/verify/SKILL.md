@@ -18,6 +18,8 @@ hooks:
           echo "[verify skill] this skill is loaded — run /verify before stop"
         fi
       once: false
+context: fork
+agent: verifier
 ---
 
 > **Reconstruction notice.** Boris calls the verification loop his #1

@@ -1,0 +1,1064 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "nitter" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - link "Logo" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "Logo" [ref=e7]
+      - generic [ref=e8]:
+        - link "" [ref=e10] [cursor=pointer]:
+          - /url: /search
+        - link "" [ref=e12] [cursor=pointer]:
+          - /url: /bcherny/rss
+        - link "" [ref=e14] [cursor=pointer]:
+          - /url: https://x.com/bcherny
+        - link [ref=e15] [cursor=pointer]:
+          - /url: https://liberapay.com/zedeus
+          - img [ref=e16]
+        - link "" [ref=e21] [cursor=pointer]:
+          - /url: /about
+        - link "" [ref=e23] [cursor=pointer]:
+          - /url: /settings?referer=%2Fbcherny
+  - generic [ref=e25]:
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - link [ref=e31] [cursor=pointer]:
+            - /url: /pic/pbs.twimg.com%2Fprofile_images%2F1902044548936953856%2FJ2jeik0t.jpg
+          - generic [ref=e32]:
+            - link "Boris Cherny" [ref=e33] [cursor=pointer]:
+              - /url: /bcherny
+            - generic [ref=e34]:
+              - generic "Verified blue account" [ref=e35]: 
+              - generic "Verified blue account" [ref=e36]: 
+            - link "@bcherny" [ref=e37] [cursor=pointer]:
+              - /url: /bcherny
+        - generic [ref=e38]:
+          - paragraph [ref=e40]:
+            - text: Claude Code
+            - link "@anthropicai" [ref=e41] [cursor=pointer]:
+              - /url: /anthropicai
+          - generic [ref=e42]:
+            - generic [ref=e45]: 
+            - text: San Francisco
+          - generic [ref=e47]:
+            - generic [ref=e49]: 
+            - link "borischerny.com" [ref=e50] [cursor=pointer]:
+              - /url: https://borischerny.com
+          - link " Joined June 2010" [ref=e52] [cursor=pointer]:
+            - /url: /bcherny/about
+            - generic [ref=e53]:
+              - generic [ref=e54]: 
+              - text: Joined June 2010
+          - list [ref=e56]:
+            - listitem [ref=e57]:
+              - text: Tweets
+              - generic [ref=e58]: 1,685
+            - listitem [ref=e59]:
+              - text: Following
+              - generic [ref=e60]: "133"
+            - listitem [ref=e61]:
+              - text: Followers
+              - generic [ref=e62]: 434,518
+            - listitem [ref=e63]:
+              - text: Likes
+              - generic [ref=e64]: 2,827
+      - generic [ref=e65]:
+        - link " 88 Photos and videos" [ref=e67] [cursor=pointer]:
+          - /url: /bcherny/media
+          - generic [ref=e68]:
+            - generic [ref=e69]: 
+            - text: 88 Photos and videos
+        - text:  
+        - generic [ref=e70]:
+          - link [ref=e71] [cursor=pointer]:
+            - /url: /bcherny/status/2052126079176093967#m
+          - link [ref=e72] [cursor=pointer]:
+            - /url: /bcherny/status/2052068475900985388#m
+          - link [ref=e73] [cursor=pointer]:
+            - /url: /bcherny/status/2051834563899654342#m
+          - link [ref=e74] [cursor=pointer]:
+            - /url: /bcherny/status/2044847856872546639#m
+          - link [ref=e75] [cursor=pointer]:
+            - /url: /bcherny/status/2044847855006024147#m
+          - link [ref=e76] [cursor=pointer]:
+            - /url: /bcherny/status/2044847853030580247#m
+          - link [ref=e77] [cursor=pointer]:
+            - /url: /bcherny/status/2044847849662505288#m
+          - link [ref=e78] [cursor=pointer]:
+            - /url: /bcherny/status/2044826315849888207#m
+          - link [ref=e79] [cursor=pointer]:
+            - /url: /bcherny/status/2044825898613187051#m
+          - link [ref=e80] [cursor=pointer]:
+            - /url: /bcherny/status/2044821690920980626#m
+          - link [ref=e81] [cursor=pointer]:
+            - /url: /bcherny/status/2044821479980929082#m
+          - link [ref=e82] [cursor=pointer]:
+            - /url: /bcherny/status/2044632185354006713#m
+          - link [ref=e83] [cursor=pointer]:
+            - /url: /bcherny/status/2042352728094245016#m
+          - link [ref=e84] [cursor=pointer]:
+            - /url: /bcherny/status/2042352726613639570#m
+          - link [ref=e85] [cursor=pointer]:
+            - /url: /bcherny/status/2042352720489955539#m
+    - generic [ref=e86]:
+      - list [ref=e87]:
+        - listitem [ref=e88]:
+          - link "Tweets" [ref=e89] [cursor=pointer]:
+            - /url: /bcherny
+        - listitem [ref=e90]:
+          - link "Tweets & Replies" [ref=e91] [cursor=pointer]:
+            - /url: /bcherny/with_replies
+        - listitem [ref=e92]:
+          - link "Media" [ref=e93] [cursor=pointer]:
+            - /url: /bcherny/media
+        - listitem [ref=e94]:
+          - link "Search" [ref=e95] [cursor=pointer]:
+            - /url: /bcherny/search
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - link [ref=e98] [cursor=pointer]:
+            - /url: /nvidia/status/2052091408643756296#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e99] [cursor=pointer]:
+                  - /url: /nvidia
+                - generic:
+                  - generic:
+                    - link "NVIDIA" [ref=e100] [cursor=pointer]:
+                      - /url: /nvidia
+                    - generic:
+                      - generic:
+                        - generic "Verified business account": 
+                      - generic:
+                        - generic "Verified business account": 
+                    - link "@nvidia" [ref=e101] [cursor=pointer]:
+                      - /url: /nvidia
+                  - link "15h" [ref=e102] [cursor=pointer]:
+                    - /url: /nvidia/status/2052091408643756296#m
+            - generic [ref=e103]:
+              - text: Two frontier labs. One accelerated computing platform. Congrats to
+              - link "@SpaceX" [ref=e104] [cursor=pointer]:
+                - /url: /SpaceX
+              - text: and
+              - link "@AnthropicAI" [ref=e105] [cursor=pointer]:
+                - /url: /AnthropicAI
+              - text: on the new compute partnership, powered by 220,000+ NVIDIA GPUs inside Colossus 1. The future of AI runs on NVIDIA.
+            - generic [ref=e106]:
+              - link [ref=e107] [cursor=pointer]:
+                - /url: /claudeai/status/2052060691893227611#m
+              - generic [ref=e108]:
+                - generic [ref=e109]:
+                  - link "Claude" [ref=e110] [cursor=pointer]:
+                    - /url: /claudeai
+                  - generic [ref=e111]:
+                    - generic "Verified blue account" [ref=e112]: 
+                    - generic "Verified blue account" [ref=e113]: 
+                  - link "@claudeai" [ref=e114] [cursor=pointer]:
+                    - /url: /claudeai
+                - link "18h" [ref=e116] [cursor=pointer]:
+                  - /url: /claudeai/status/2052060691893227611#m
+              - generic [ref=e117]:
+                - text: We’ve agreed to a partnership with
+                - link "@SpaceX" [ref=e118] [cursor=pointer]:
+                  - /url: /SpaceX
+                - text: that will substantially increase our compute capacity. This, along with our other recent compute deals, means that we’ve been able to increase our usage limits for Claude Code and the Claude API.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "315"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "868"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 9,882
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 21,543,973
+        - generic [ref=e119]:
+          - link [ref=e120] [cursor=pointer]:
+            - /url: /bcherny/status/2052070555151708564#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e121] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e122] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e123] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "17h" [ref=e124] [cursor=pointer]:
+                    - /url: /bcherny/status/2052070555151708564#m
+            - generic [ref=e125]:
+              - text: Demand has outpaced our capacity recently, and we know it's been frustrating. We take your feedback to heart, thank you for sticking with us.
+              - link "anthropic.com/news/higher-li…" [ref=e126] [cursor=pointer]:
+                - /url: https://www.anthropic.com/news/higher-limits-spacex
+            - link "Higher usage limits for Claude and a compute deal with SpaceX We’ve raised Claude's usage limits and agreed a new compute partnership with SpaceX that will substantially increase our capacity in the near term. anthropic.com" [ref=e128] [cursor=pointer]:
+              - /url: https://www.anthropic.com/news/higher-limits-spacex
+              - generic [ref=e132]:
+                - heading "Higher usage limits for Claude and a compute deal with SpaceX" [level=2] [ref=e133]
+                - paragraph [ref=e134]: We’ve raised Claude's usage limits and agreed a new compute partnership with SpaceX that will substantially increase our capacity in the near term.
+                - generic [ref=e135]: anthropic.com
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "21"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "5"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "178"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 22,661
+        - generic [ref=e136]:
+          - link [ref=e137] [cursor=pointer]:
+            - /url: /bcherny/status/2052070552744116486#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e138] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e139] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e140] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "17h" [ref=e141] [cursor=pointer]:
+                    - /url: /bcherny/status/2052070552744116486#m
+            - text: "We also announced a compute partnership with SpaceX: 300+ MW of new capacity and 220K NVIDIA GPUs online within the month, all powering Claude Pro and Max."
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "29"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "11"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "560"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 33,293
+        - generic [ref=e142]:
+          - link [ref=e143] [cursor=pointer]:
+            - /url: /bcherny/status/2052070550982611109#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e144] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e145] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e146] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "17h" [ref=e147] [cursor=pointer]:
+                    - /url: /bcherny/status/2052070550982611109#m
+            - text: "Two big changes for Claude Code today: 5-hour rate limits doubled on Pro, Max, Team, and seat-based Enterprise, and we’ve removed the peak-hours limits for Pro and Max. Both effective today."
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "94"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "37"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 1,347
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 62,152
+        - generic [ref=e148]:
+          - link [ref=e149] [cursor=pointer]:
+            - /url: /bcherny/status/2052070549271232870#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e150] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e151] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e152] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "17h" [ref=e153] [cursor=pointer]:
+                    - /url: /bcherny/status/2052070549271232870#m
+            - text: It's been an amazing start to Code w/ Claude! Love hearing what people are building with Claude Code and getting feedback on what we can do better.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "140"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "30"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 1,682
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 91,740
+        - generic [ref=e154]:
+          - link [ref=e155] [cursor=pointer]:
+            - /url: /bcherny/status/2052068475900985388#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e156] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e157] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e158] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "17h" [ref=e159] [cursor=pointer]:
+                    - /url: /bcherny/status/2052068475900985388#m
+            - text: Hello from Code with Claude!
+            - generic [ref=e162]:
+              - link:
+                - /url: /pic/orig/media%2FHHppZwabAAIyrkL.jpg
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "117"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "95"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 3,877
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 166,077
+        - generic [ref=e163]:
+          - link [ref=e164] [cursor=pointer]:
+            - /url: /claudeai/status/2052060691893227611#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e165] [cursor=pointer]:
+                  - /url: /claudeai
+                - generic:
+                  - generic:
+                    - link "Claude" [ref=e166] [cursor=pointer]:
+                      - /url: /claudeai
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@claudeai" [ref=e167] [cursor=pointer]:
+                      - /url: /claudeai
+                  - link "18h" [ref=e168] [cursor=pointer]:
+                    - /url: /claudeai/status/2052060691893227611#m
+            - generic [ref=e169]:
+              - text: We’ve agreed to a partnership with
+              - link "@SpaceX" [ref=e170] [cursor=pointer]:
+                - /url: /SpaceX
+              - text: that will substantially increase our compute capacity. This, along with our other recent compute deals, means that we’ve been able to increase our usage limits for Claude Code and the Claude API.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 4,291
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 10,739
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 116,209
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 18,680,574
+        - generic [ref=e171]:
+          - link [ref=e172] [cursor=pointer]:
+            - /url: /ClaudeDevs/status/2052055459272761661#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e173] [cursor=pointer]:
+                  - /url: /ClaudeDevs
+                - generic:
+                  - generic:
+                    - link "ClaudeDevs" [ref=e174] [cursor=pointer]:
+                      - /url: /ClaudeDevs
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@ClaudeDevs" [ref=e175] [cursor=pointer]:
+                      - /url: /ClaudeDevs
+                  - link "18h" [ref=e176] [cursor=pointer]:
+                    - /url: /ClaudeDevs/status/2052055459272761661#m
+            - generic [ref=e177]:
+              - text: Code with Claude is happening now! ▪︎ 9:00AM - Keynote ▪︎ 10:30AM - What's new in Claude Code ▪︎ 11:15AM - Building on Claude at GitHub scale ▪︎ 12:00PM - Get to production faster with Managed Agents All times PT.
+              - link "nitter.net/i/broadcasts/1qGoNegbn…" [ref=e178] [cursor=pointer]:
+                - /url: https://nitter.net/i/broadcasts/1qGoNegbnRNKv
+            - generic [ref=e180]:
+              - generic [ref=e183]:
+                - img
+                - button "Enable hls playback" [ref=e186] [cursor=pointer]
+              - link "ClaudeDevs Code with Claude 2026" [ref=e187] [cursor=pointer]:
+                - /url: /i/broadcasts/1qGoNegbnRNKv
+                - generic [ref=e188]:
+                  - heading "ClaudeDevs" [level=2] [ref=e189]
+                  - paragraph [ref=e190]: Code with Claude 2026
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "195"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "569"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 4,463
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 596,192
+        - generic [ref=e191]:
+          - link [ref=e192] [cursor=pointer]:
+            - /url: /bcherny/status/2051834563899654342#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e193] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e194] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e195] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "May 6" [ref=e196] [cursor=pointer]:
+                    - /url: /bcherny/status/2051834563899654342#m
+            - text: See everyone tomorrow!!
+            - generic [ref=e199]:
+              - link:
+                - /url: /pic/orig/media%2FHHmUqSkbIAAZwFX.jpg
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "147"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "51"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 3,627
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 214,945
+        - generic [ref=e200]:
+          - link [ref=e201] [cursor=pointer]:
+            - /url: /ClaudeDevs/status/2049228273813750030#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e202] [cursor=pointer]:
+                  - /url: /ClaudeDevs
+                - generic:
+                  - generic:
+                    - link "ClaudeDevs" [ref=e203] [cursor=pointer]:
+                      - /url: /ClaudeDevs
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@ClaudeDevs" [ref=e204] [cursor=pointer]:
+                      - /url: /ClaudeDevs
+                  - link "Apr 28" [ref=e205] [cursor=pointer]:
+                    - /url: /ClaudeDevs/status/2049228273813750030#m
+            - text: "In the last four Claude Code CLI releases, we’ve shipped 50+ stability and performance fixes. Faster resume, stable auth, lower memory, fewer hangs: 🧵"
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "223"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "124"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 3,217
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 606,735
+        - generic [ref=e206]:
+          - link [ref=e207] [cursor=pointer]:
+            - /url: /dmwlff/status/2047105823890166170#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e208] [cursor=pointer]:
+                  - /url: /dmwlff
+                - generic:
+                  - generic:
+                    - link "Adam Wolff" [ref=e209] [cursor=pointer]:
+                      - /url: /dmwlff
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@dmwlff" [ref=e210] [cursor=pointer]:
+                      - /url: /dmwlff
+                  - link "Apr 23" [ref=e211] [cursor=pointer]:
+                    - /url: /dmwlff/status/2047105823890166170#m
+            - text: After 2.1.117, you may notice that Claude doesn't call its Grep or Glob Tool anymore. YES!!! It only took four months. It's faster than ever and it's all Bash. It's so much harder to take things away than to add them. Enjoy.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "63"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "62"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 1,756
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 342,551
+        - generic [ref=e212]:
+          - link [ref=e213] [cursor=pointer]:
+            - /url: /bcherny/status/2047376417340756322#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e214] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e215] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e216] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "Apr 23" [ref=e217] [cursor=pointer]:
+                    - /url: /bcherny/status/2047376417340756322#m
+            - text: We’re resetting usage limits for subscribers. Thank you so much for your feedback and patience!
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "128"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "22"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "942"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 107,951
+        - generic [ref=e218]:
+          - link [ref=e219] [cursor=pointer]:
+            - /url: /bcherny/status/2047376371517964549#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e220] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e221] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e222] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "Apr 23" [ref=e223] [cursor=pointer]:
+                    - /url: /bcherny/status/2047376371517964549#m
+            - text: Separately, we’ve also heard reports of issues with Opus 4.7 in Claude Code. The team is working on those and we’ll share more as we roll out improvements over the coming days.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "72"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "17"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "622"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 97,272
+        - generic [ref=e224]:
+          - link [ref=e225] [cursor=pointer]:
+            - /url: /bcherny/status/2047376081767014703#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e226] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e227] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e228] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "Apr 23" [ref=e229] [cursor=pointer]:
+                    - /url: /bcherny/status/2047376081767014703#m
+            - text: We take these reports incredibly seriously. In my time on the team, this has probably been the most complex investigation we’ve had. The root causes were not obvious, and there were many confounders.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "87"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "9"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "922"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 197,054
+        - generic [ref=e230]:
+          - link [ref=e231] [cursor=pointer]:
+            - /url: /bcherny/status/2047375800945783056#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e232] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e233] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e234] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "Apr 23" [ref=e235] [cursor=pointer]:
+                    - /url: /bcherny/status/2047375800945783056#m
+            - text: We’ve been looking into recent reports around Claude Code quality issues, and just published a post-mortem on what we found.
+            - generic [ref=e236]:
+              - link [ref=e237] [cursor=pointer]:
+                - /url: /ClaudeDevs/status/2047371123185287223#m
+              - generic [ref=e238]:
+                - generic [ref=e239]:
+                  - link "ClaudeDevs" [ref=e240] [cursor=pointer]:
+                    - /url: /ClaudeDevs
+                  - generic [ref=e241]:
+                    - generic "Verified blue account" [ref=e242]: 
+                    - generic "Verified blue account" [ref=e243]: 
+                  - link "@ClaudeDevs" [ref=e244] [cursor=pointer]:
+                    - /url: /ClaudeDevs
+                - link "Apr 23" [ref=e246] [cursor=pointer]:
+                  - /url: /ClaudeDevs/status/2047371123185287223#m
+              - generic [ref=e247]: Over the past month, some of you reported Claude Code's quality had slipped. We investigated, and published a post-mortem on the three issues we found. All are fixed in v2.1.116+ and we’ve reset usage limits for all subscribers.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "401"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "138"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 3,396
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 623,013
+        - generic [ref=e248]:
+          - link [ref=e249] [cursor=pointer]:
+            - /url: /bcherny/status/2047004804283773321#m
+          - generic:
+            - generic:
+              - generic:
+                - link [ref=e250] [cursor=pointer]:
+                  - /url: /bcherny
+                - generic:
+                  - generic:
+                    - link "Boris Cherny" [ref=e251] [cursor=pointer]:
+                      - /url: /bcherny
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@bcherny" [ref=e252] [cursor=pointer]:
+                      - /url: /bcherny
+                  - link "Apr 22" [ref=e253] [cursor=pointer]:
+                    - /url: /bcherny/status/2047004804283773321#m
+            - generic [ref=e254]:
+              - text: Claude Code won a Webby! Thanks to all of our users and customers for the support and love, and for always giving us feedback so that we can continue making the product a little better every day.
+              - link "winners.webbyawards.com/2026…" [ref=e255] [cursor=pointer]:
+                - /url: https://winners.webbyawards.com/2026/ai/ai-features-innovation/best-product-or-service/387497/claude-code
+            - link "NEW Webby Gallery + Index DISCOVER THE BEST OF THE INTERNET. Welcome to the NEW Webby Gallery + Index. Discover the best of the Internet and uncover trends, insights and talent that define the future of Internet excellence. winners.webbyawards.com" [ref=e257] [cursor=pointer]:
+              - /url: https://winners.webbyawards.com/2026/ai/ai-features-innovation/best-product-or-service/387497/claude-code
+              - generic [ref=e261]:
+                - heading "NEW Webby Gallery + Index" [level=2] [ref=e262]
+                - paragraph [ref=e263]: DISCOVER THE BEST OF THE INTERNET. Welcome to the NEW Webby Gallery + Index. Discover the best of the Internet and uncover trends, insights and talent that define the future of Internet excellence.
+                - generic [ref=e264]: winners.webbyawards.com
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "73"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "20"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "660"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 82,063
+        - generic [ref=e265]:
+          - link [ref=e266] [cursor=pointer]:
+            - /url: /TheAmolAvasare/status/2046724659039932830#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e267] [cursor=pointer]:
+                  - /url: /TheAmolAvasare
+                - generic:
+                  - generic:
+                    - link "Amol Avasare" [ref=e268] [cursor=pointer]:
+                      - /url: /TheAmolAvasare
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@TheAmolAvasare" [ref=e269] [cursor=pointer]:
+                      - /url: /TheAmolAvasare
+                  - link "Apr 21" [ref=e270] [cursor=pointer]:
+                    - /url: /TheAmolAvasare/status/2046724659039932830#m
+            - text: For clarity, we're running a small test on ~2% of new prosumer signups. Existing Pro and Max subscribers aren't affected.
+            - generic [ref=e271]:
+              - link [ref=e272] [cursor=pointer]:
+                - /url: /TheGeorgePu/status/2046705634331025855#m
+              - generic [ref=e273]:
+                - generic [ref=e274]:
+                  - link "George Pu" [ref=e275] [cursor=pointer]:
+                    - /url: /TheGeorgePu
+                  - generic [ref=e276]:
+                    - generic "Verified blue account" [ref=e277]: 
+                    - generic "Verified blue account" [ref=e278]: 
+                  - link "@TheGeorgePu" [ref=e279] [cursor=pointer]:
+                    - /url: /TheGeorgePu
+                - link "Apr 21" [ref=e281] [cursor=pointer]:
+                  - /url: /TheGeorgePu/status/2046705634331025855#m
+              - generic [ref=e282]: Anthropic just pulled Claude Code from the Pro plan. Pro users wanting it need Max now. $100/month minimum. 5x jump. I'm on Max 20x so I'm fine. Flagging for anyone on Pro who's about to find out. No announcement. Just a pricing page edit.
+              - generic [ref=e286]:
+                - link:
+                  - /url: /pic/orig/media%2FHGdb7GEXMAAYHI2.jpg
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 1,360
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "683"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 5,262
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 6,862,551
+        - generic [ref=e287]:
+          - link [ref=e288] [cursor=pointer]:
+            - /url: /claudeai/status/2046328619249684989#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e289] [cursor=pointer]:
+                  - /url: /claudeai
+                - generic:
+                  - generic:
+                    - link "Claude" [ref=e290] [cursor=pointer]:
+                      - /url: /claudeai
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@claudeai" [ref=e291] [cursor=pointer]:
+                      - /url: /claudeai
+                  - link "Apr 20" [ref=e292] [cursor=pointer]:
+                    - /url: /claudeai/status/2046328619249684989#m
+            - text: "In Cowork, Claude can now build live artifacts: dashboards and trackers connected to your apps and files. Open one any time and it refreshes with current data."
+            - generic [ref=e295]:
+              - link "Live Artifacts, now in Claude Cowork":
+                - /url: /pic/orig/media%2FHGYC0aEbcAA6EJY.jpg
+                - img "Live Artifacts, now in Claude Cowork"
+              - paragraph [ref=e296]: ALT Live Artifacts, now in Claude Cowork
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "666"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 1,558
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 19,401
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 6,529,238
+        - generic [ref=e297]:
+          - link [ref=e298] [cursor=pointer]:
+            - /url: /felixrieseberg/status/2045211232534474959#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e299] [cursor=pointer]:
+                  - /url: /felixrieseberg
+                - generic:
+                  - generic:
+                    - link "Felix Rieseberg" [ref=e300] [cursor=pointer]:
+                      - /url: /felixrieseberg
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@felixrieseberg" [ref=e301] [cursor=pointer]:
+                      - /url: /felixrieseberg
+                  - link "Apr 17" [ref=e302] [cursor=pointer]:
+                    - /url: /felixrieseberg/status/2045211232534474959#m
+            - generic [ref=e303]:
+              - text: "We ship new little improvements every single day, but this one was requested so much that I'm tweeting about it: Skip all permissions for Claude Cowork. Use with care, brought to you by"
+              - link "@dreamofabear" [ref=e304] [cursor=pointer]:
+                - /url: /dreamofabear
+            - generic [ref=e307]:
+              - img
+              - button "Enable hls playback" [ref=e310] [cursor=pointer]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "90"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "60"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 1,453
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 187,616
+        - generic [ref=e311]:
+          - link [ref=e312] [cursor=pointer]:
+            - /url: /claudeai/status/2045248224659644654#m
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: 
+                    - text: Boris Cherny retweeted
+              - generic:
+                - link [ref=e313] [cursor=pointer]:
+                  - /url: /claudeai
+                - generic:
+                  - generic:
+                    - link "Claude" [ref=e314] [cursor=pointer]:
+                      - /url: /claudeai
+                    - generic:
+                      - generic:
+                        - generic "Verified blue account": 
+                      - generic:
+                        - generic "Verified blue account": 
+                    - link "@claudeai" [ref=e315] [cursor=pointer]:
+                      - /url: /claudeai
+                  - link "Apr 17" [ref=e316] [cursor=pointer]:
+                    - /url: /claudeai/status/2045248224659644654#m
+            - generic [ref=e317]:
+              - text: "The Claude Code hackathon is back for Opus 4.7. Join builders from around the world for a week with the Claude Code team in the room, with a prize pool of $100K in API credits. Apply by Sunday:"
+              - link "cerebralvalley.ai/e/built-wi…" [ref=e318] [cursor=pointer]:
+                - /url: https://cerebralvalley.ai/e/built-with-4-7-hackathon
+            - generic [ref=e321]:
+              - img
+              - button "Enable hls playback" [ref=e324] [cursor=pointer]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "615"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: "934"
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 10,688
+              - generic:
+                - generic:
+                  - generic: 
+                  - text: 1,593,136
+        - link "Load more" [ref=e326] [cursor=pointer]:
+          - /url: "?cursor=DAAHCgABHHtZuGU__-sLAAIAAAATMjA0NTYxNjExNDM3ODYxNzE5MggAAwAAAAIAAA"
+        - link "" [ref=e329] [cursor=pointer]:
+          - /url: "#"

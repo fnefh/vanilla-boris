@@ -30,7 +30,9 @@ Sections, in order, each one paragraph or fewer:
    Not a tour."
 
 Hard caps:
-- ≤ 80 lines total.
+- ≤ 80 lines **and** ≤ 2,500 tokens, whichever is smaller. (Boris
+  maintains a ~2.5k-token CLAUDE.md per the Jan 2026 InfoQ interview
+  "Inside the Development Workflow of Claude Code's Creator".)
 - No emoji, no marketing language, no "this project aims to…".
 - Every command must be runnable as written.
 

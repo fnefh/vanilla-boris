@@ -22,4 +22,7 @@ Trivial changes that skip this skill: typo fixes, single-file <10-line
 edits, comment-only changes, dependency bumps already in `package.json`.
 
 Per howborisusesclaudecode.com Part 3: re-plan when reality diverges from
-the plan, rather than course-correcting one step at a time.
+the plan, rather than course-correcting one step at a time. Boris's
+own ratio is **10–20% of sessions abandoned** when a plan turns out to
+be wrong (per the Jan 2026 InfoQ interview "Inside the Development
+Workflow of Claude Code's Creator") — that's normal, not a failure.

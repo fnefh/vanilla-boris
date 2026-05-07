@@ -1,5 +1,90 @@
 # Changelog
 
+## 0.4.0 — 2026-05-07
+
+Driven by a third research pass: deep-dive into code.claude.com/docs +
+@bcherny content beyond howborisusesclaudecode.com (InfoQ "Inside the
+Development Workflow of Claude Code's Creator", Pragmatic Engineer
+interview, Mar 30 2026 hidden-features thread transcribed at
+shanraisshan/claude-code-best-practice). v0.4.0 expands the plugin's
+Anthropic-supported surface area and adds a small reconstruction.
+
+Added (top-level surfaces):
+- `marketplace.json` — local-path stub. Once the repo has a public git
+  URL, plugin becomes installable via `/plugin marketplace add <url>` +
+  `/plugin install vanilla-boris`.
+- `.claude-plugin/settings.json` — plugin-level defaults (status line,
+  permission allowlist with Boris's actual `bun run build:*`,
+  `bun run test:*`, `cc:*` patterns from InfoQ, spinner verbs,
+  `permissions.defaultMode: "ask"`).
+- `bin/vb-verify`, `bin/vb-snapshot` — bundled helpers added to the
+  Bash tool's PATH while the plugin is enabled.
+- `output-styles/boris-productivity.md` — opt-in voice (verification-
+  first, terse, plan-then-go, bun/typecheck/squash-merge defaults).
+  Activated via `/output-style boris-productivity`. Never auto-applied.
+- `monitors/monitors.json` — example background monitors (build-log,
+  ci-watch, verify-stream); all entries disabled by default.
+
+Added (skills):
+- `skills/learn-codebase/SKILL.md` — reconstruction of Boris's HTML-
+  presentation pattern for explaining unfamiliar code (cited from the
+  Mar 30 2026 thread).
+
+Added (hooks):
+- `hooks/PreCompact.sh` — 9th hook. Saves a hand-rolled session note to
+  `.claude/session-notes/<sid>.md` BEFORE LLM compaction (counterpart
+  to `PostCompact`).
+
+Skill/agent capabilities now used:
+- `skills/verify/SKILL.md` — `context: fork` + `agent: verifier`.
+- `skills/challenge-me/SKILL.md` — `context: fork` + `model: opus`.
+- `skills/full-brief/SKILL.md` — `effort: xhigh`.
+- `commands/pr-pruner.md` + `commands/babysit.md` — `arguments` and
+  `argument-hint`.
+
+Hook extensions:
+- `hooks/PreToolUse.sh` — narrowed nudges. Was nudging on every Bash /
+  Edit / Write; now only flags actually-risky patterns (`rm -rf`,
+  `git push --force`, `gh pr merge`, `sudo`, edits to `/etc`/`/usr`/
+  shell-rc).
+- `hooks/PostToolUse.sh` — tool-duration guardian. Hints when any tool
+  call took > 5,000ms (per `CLAUDE_TOOL_DURATION_MS` from release
+  notes 2.1.x).
+- `hooks/Stop.sh` — Slack notification now fire-and-forget
+  (backgrounded), so session-end never blocks on slow Slack DNS/TLS.
+
+References (NEW):
+- `references/cowork-dispatch.md` — Boris's daily-catch-up usage.
+- `references/parallel-worktrees-vs-checkouts.md` — Boris's isolation
+  trade-off note (worktrees vs full checkouts; from InfoQ).
+
+References (EXTENDED):
+- `references/shell-aliases.md` — corrected from `za/zb/zc` to Boris's
+  actual `2a/2b/2c` form (per InfoQ).
+- `references/recommended-mcps.md` — elevated Chrome extension over
+  MCP-based browser alternatives ("more reliable" per Mar 30 thread).
+- `references/loop-recipes.md` — added `/batch` scale note ("dozens,
+  hundreds, or thousands" of worktree agents).
+
+Skills extended:
+- `skills/north-star/SKILL.md` — cap is now "≤ 80 lines OR ≤ 2,500
+  tokens" (Boris's actual CLAUDE.md size, per InfoQ).
+- `skills/plan-first/SKILL.md` — added the "10–20% of sessions
+  abandoned" framing from InfoQ; re-plan over course-correct.
+
+Default permissions extended (in `install.sh` template):
+- Added `Bash(bun run build:*)`, `Bash(bun run test:*)`, `Bash(cc:*)`
+  matching Boris's actual `/permissions` allowlist (per InfoQ).
+
+Tests:
+- Hook count expectation 8 → 9.
+- New checks: `marketplace.json` parses, `.claude-plugin/settings.json`
+  valid, `bin/` scripts executable, `output-styles/`, `monitors/`
+  installed, `plugin.json.version == "0.4.0"`.
+- New synthetic event in `hooks-fire.test.sh`: PreCompact writes a
+  session-notes file.
+- PreToolUse tests updated for the narrowed-nudge contract.
+
 ## 0.3.0 — 2026-05-07
 
 Site re-audit revision tracked: howborisusesclaudecode.com as of

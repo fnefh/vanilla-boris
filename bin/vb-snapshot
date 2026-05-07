@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# vb-snapshot — print a one-shot summary of the current Claude Code
+# session using CLAUDE_SESSION_* env vars. Bundled into PATH while the
+# vanilla-boris plugin is enabled.
+set -euo pipefail
+
+sid="${CLAUDE_CODE_SESSION_ID:-?}"
+edits="${CLAUDE_SESSION_EDIT_COUNT:-0}"
+verified="${CLAUDE_SESSION_VERIFY_INVOKED:-0}"
+worktree="${CLAUDE_WORKTREE_NAME:-(none)}"
+
+cat <<EOF
+[vb-snapshot] $(date '+%Y-%m-%d %H:%M:%S')
+  session: $sid
+  worktree: $worktree
+  edits: $edits
+  /verify invoked: $verified
+EOF
+
+if [[ "$edits" -gt 0 ]] && [[ "$verified" -eq 0 ]]; then
+  echo "  status: edits without /verify (Boris's #1 principle reminder)"
+elif [[ "$edits" -gt 0 ]] && [[ "$verified" -eq 1 ]]; then
+  echo "  status: edits + /verify ✓"
+else
+  echo "  status: idle"
+fi

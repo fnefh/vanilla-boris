@@ -15,10 +15,10 @@ pushd "$tmp/repo" >/dev/null
 # SIGPIPE under `set -o pipefail` once install.sh exits.
 printf 'n\n' | ./install.sh project >/dev/null
 
-expected_skills=12
+expected_skills=13
 expected_commands=5
 expected_agents=3
-expected_hooks=8
+expected_hooks=9
 
 # Skills
 got_skills=$(ls -1 .claude/skills 2>/dev/null | wc -l | tr -d ' ')
@@ -36,8 +36,8 @@ got_agents=$(ls -1 .claude/agents 2>/dev/null | wc -l | tr -d ' ')
 got_hooks=$(ls -1 .claude/hooks 2>/dev/null | wc -l | tr -d ' ')
 [[ "$got_hooks" == "$expected_hooks" ]] || { echo "FAIL: hooks $got_hooks/$expected_hooks"; exit 1; }
 for h in UserPromptSubmit.sh PreToolUse.sh PostToolUse.sh \
-         SessionStart.sh SessionEnd.sh Stop.sh PostCompact.sh \
-         PermissionRequest.sh; do
+         SessionStart.sh SessionEnd.sh Stop.sh PreCompact.sh \
+         PostCompact.sh PermissionRequest.sh; do
   test -x ".claude/hooks/$h" || { echo "FAIL: not executable: $h"; exit 1; }
 done
 
@@ -52,10 +52,26 @@ jq -e '.settings.subagentStatusLine | length > 0' plugin.json >/dev/null \
 jq -e '.settings.spinnerVerbs | length == 12' plugin.json >/dev/null \
   || { echo "FAIL: plugin.json spinnerVerbs count != 12"; exit 1; }
 
+# v0.4.0 — marketplace.json + .claude-plugin/settings.json + new bins/styles/monitors.
+jq -e '.plugins[0].name == "vanilla-boris"' marketplace.json >/dev/null \
+  || { echo "FAIL: marketplace.json[0].name != vanilla-boris"; exit 1; }
+jq -e '.permissions.defaultMode == "ask"' .claude-plugin/settings.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/settings.json missing permissions.defaultMode"; exit 1; }
+test -x ".claude/bin/vb-verify"   || { echo "FAIL: bin/vb-verify not installed"; exit 1; }
+test -x ".claude/bin/vb-snapshot" || { echo "FAIL: bin/vb-snapshot not installed"; exit 1; }
+test -f ".claude/output-styles/boris-productivity.md" \
+  || { echo "FAIL: output-styles/boris-productivity.md not installed"; exit 1; }
+test -f ".claude/monitors/monitors.json" \
+  || { echo "FAIL: monitors/monitors.json not installed"; exit 1; }
+jq -e '.monitors | length >= 1' monitors/monitors.json >/dev/null \
+  || { echo "FAIL: monitors/monitors.json has no entries"; exit 1; }
+jq -e '.version == "0.4.0"' plugin.json >/dev/null \
+  || { echo "FAIL: plugin.json version != 0.4.0"; exit 1; }
+
 # Each named skill present
 for s in north-star three-loop plan-first go verify parallel-worktrees \
          full-brief challenge-me autonomy-ladder mcp-audit \
-         auto-mode-onboarding skill-author; do
+         auto-mode-onboarding skill-author learn-codebase; do
   test -f ".claude/skills/$s/SKILL.md" || { echo "FAIL: missing skill: $s"; exit 1; }
 done
 

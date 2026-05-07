@@ -17,24 +17,45 @@ out=$(./hooks/UserPromptSubmit.sh)
 [[ -z "$out" ]] \
   || { echo "FAIL: UserPromptSubmit nudged on trivial prompt: $out"; exit 1; }
 
-# PreToolUse — Bash should warn rung 4.
+# PreToolUse — destructive Bash should warn (rung 4).
 export CLAUDE_TOOL_NAME=Bash
+export CLAUDE_TOOL_INPUT="rm -rf /tmp/junk"
 out=$(./hooks/PreToolUse.sh)
-echo "$out" | grep -q "rung 4" \
-  || { echo "FAIL: PreToolUse didn't warn for Bash"; exit 1; }
+echo "$out" | grep -q "destructive rm" \
+  || { echo "FAIL: PreToolUse didn't warn for rm -rf"; exit 1; }
 
-# PreToolUse — Edit should warn rung 3.
-export CLAUDE_TOOL_NAME=Edit
+# PreToolUse — force-push should warn.
+export CLAUDE_TOOL_INPUT="git push --force origin main"
 out=$(./hooks/PreToolUse.sh)
-echo "$out" | grep -q "rung 3" \
-  || { echo "FAIL: PreToolUse didn't warn for Edit"; exit 1; }
+echo "$out" | grep -q "force-push" \
+  || { echo "FAIL: PreToolUse didn't warn for force-push"; exit 1; }
+
+# PreToolUse — safe Bash should be silent (v0.4.0 narrowing).
+export CLAUDE_TOOL_INPUT="git status"
+out=$(./hooks/PreToolUse.sh)
+[[ -z "$out" ]] \
+  || { echo "FAIL: PreToolUse should be silent for safe bash, got: $out"; exit 1; }
+
+# PreToolUse — Edit/Write inside cwd should be silent.
+export CLAUDE_TOOL_NAME=Edit
+export CLAUDE_TOOL_INPUT="src/foo.ts"
+out=$(./hooks/PreToolUse.sh)
+[[ -z "$out" ]] \
+  || { echo "FAIL: PreToolUse should be silent for in-tree Edit, got: $out"; exit 1; }
+
+# PreToolUse — Edit on /etc should warn (rung 3 — outside worktree).
+export CLAUDE_TOOL_INPUT="/etc/hosts"
+out=$(./hooks/PreToolUse.sh)
+echo "$out" | grep -q "outside worktree" \
+  || { echo "FAIL: PreToolUse didn't warn for /etc Edit"; exit 1; }
 
 # PreToolUse — Read should be silent.
 export CLAUDE_TOOL_NAME=Read
+unset CLAUDE_TOOL_INPUT
 out=$(./hooks/PreToolUse.sh)
 [[ -z "$out" ]] \
   || { echo "FAIL: PreToolUse warned on Read: $out"; exit 1; }
-unset CLAUDE_TOOL_NAME
+unset CLAUDE_TOOL_NAME CLAUDE_TOOL_INPUT
 
 # PostToolUse — no package.json means silent no-op.
 tmp=$(mktemp -d); trap "rm -rf $tmp" EXIT
@@ -71,6 +92,20 @@ out=$(./hooks/Stop.sh)
 [[ -z "$out" ]] \
   || { echo "FAIL: Stop nudged despite zero edits: $out"; exit 1; }
 unset CLAUDE_SESSION_EDIT_COUNT CLAUDE_SESSION_VERIFY_INVOKED
+
+# PreCompact — should write a session note.  (NEW in v0.4.0)
+tmpwd=$(mktemp -d); trap "rm -rf $tmpwd" EXIT
+pushd "$tmpwd" >/dev/null
+export CLAUDE_CODE_SESSION_ID=precompact-test
+export CLAUDE_SESSION_EDIT_COUNT=4
+export CLAUDE_SESSION_VERIFY_INVOKED=1
+out=$("$REPO/hooks/PreCompact.sh")
+echo "$out" | grep -q "appended session note" \
+  || { echo "FAIL: PreCompact didn't print confirmation"; exit 1; }
+test -f .claude/session-notes/precompact-test.md \
+  || { echo "FAIL: PreCompact didn't write session note"; exit 1; }
+unset CLAUDE_CODE_SESSION_ID CLAUDE_SESSION_EDIT_COUNT CLAUDE_SESSION_VERIFY_INVOKED
+popd >/dev/null
 
 # PostCompact — should print reminder.
 out=$(./hooks/PostCompact.sh)
