@@ -1,0 +1,17 @@
+{
+  "name": "vanilla-boris",
+  "version": "0.5.0",
+  "description": "Boris-flavored Claude Code defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop, parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, four reconstructed /loop commands, sample agents, a 9-hook palette, an opt-in output style, and a learn-codebase skill.",
+  "author": {
+    "name": "vanilla-boris contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "boris",
+    "verification",
+    "worktrees",
+    "parallel-agents",
+    "auto-mode"
+  ]
+}

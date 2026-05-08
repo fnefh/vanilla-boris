@@ -9,11 +9,11 @@
     {
       "name": "vanilla-boris",
       "description": "Boris-flavored Claude Code defaults: north-star CLAUDE.md, three-loop cadence, plan-first, verification loop, parallel worktrees, autonomy ladder, MCP audit, Auto Mode onboarding, 400k autocompact, the four reconstructed /loop commands, sample agents, a 9-hook palette, a status line, spinner verbs, an opt-in output style, and a learn-codebase skill.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "source": {
         "source": "github",
         "repo": "fnefh/vanilla-boris",
-        "ref": "v0.4.0"
+        "ref": "v0.5.0"
       },
       "homepage": "https://howborisusesclaudecode.com/",
       "license": "MIT"

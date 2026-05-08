@@ -51,11 +51,12 @@ test -f .claude/settings.local.json || { echo "FAIL: settings.local.json not wri
 jq -e '.permissions.defaultMode == "ask"' .claude/settings.local.json >/dev/null \
   || { echo "FAIL: settings.local.json missing permissions.defaultMode"; exit 1; }
 
-# v0.3.0 — plugin.json carries status line + spinner verbs
-jq -e '.settings.subagentStatusLine | length > 0' plugin.json >/dev/null \
-  || { echo "FAIL: plugin.json missing settings.subagentStatusLine"; exit 1; }
-jq -e '.settings.spinnerVerbs | length == 12' plugin.json >/dev/null \
-  || { echo "FAIL: plugin.json spinnerVerbs count != 12"; exit 1; }
+# v0.5.0 — status line + spinner verbs live in .claude-plugin/settings.json
+# (cm-style; plugin.json is metadata-only, settings ship in the dedicated file)
+jq -e '.subagentStatusLine | length > 0' .claude-plugin/settings.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/settings.json missing subagentStatusLine"; exit 1; }
+jq -e '.spinnerVerbs | length == 12' .claude-plugin/settings.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/settings.json spinnerVerbs count != 12"; exit 1; }
 
 # v0.4.0 — marketplace.json + .claude-plugin/settings.json + new bins/styles/monitors.
 jq -e '.plugins[0].name == "vanilla-boris"' .claude-plugin/marketplace.json >/dev/null \
@@ -69,8 +70,8 @@ jq -e '.owner.name == "fnefh"' .claude-plugin/marketplace.json >/dev/null \
 # /plugin marketplace add fnefh/vanilla-boris.
 jq -e '.plugins[0].source | type == "object"' .claude-plugin/marketplace.json >/dev/null \
   || { echo "FAIL: source must be an object, not a string"; exit 1; }
-jq -e '.plugins[0].source.ref == "v0.4.0"' .claude-plugin/marketplace.json >/dev/null \
-  || { echo "FAIL: source.ref != v0.4.0"; exit 1; }
+jq -e '.plugins[0].source.ref == "v0.5.0"' .claude-plugin/marketplace.json >/dev/null \
+  || { echo "FAIL: source.ref != v0.5.0"; exit 1; }
 src_kind=$(jq -r '.plugins[0].source.source' .claude-plugin/marketplace.json)
 case "$src_kind" in
   github)
@@ -85,8 +86,8 @@ case "$src_kind" in
     echo "FAIL: unknown source.source: $src_kind (expected 'github' or 'git')"; exit 1
     ;;
 esac
-jq -e '.permissions.defaultMode == "ask"' .claude-plugin/settings.json >/dev/null \
-  || { echo "FAIL: .claude-plugin/settings.json missing permissions.defaultMode"; exit 1; }
+# v0.5.0 — permissions block removed from plugin-shipped settings.json
+# (cm-style; user permissions seeded by install.sh into .claude/settings.local.json)
 test -x ".claude/bin/vb-verify"   || { echo "FAIL: bin/vb-verify not installed"; exit 1; }
 test -x ".claude/bin/vb-snapshot" || { echo "FAIL: bin/vb-snapshot not installed"; exit 1; }
 test -f ".claude/output-styles/boris-productivity.md" \
@@ -95,8 +96,10 @@ test -f ".claude/monitors/monitors.json" \
   || { echo "FAIL: monitors/monitors.json not installed"; exit 1; }
 jq -e '.monitors | length >= 1' monitors/monitors.json >/dev/null \
   || { echo "FAIL: monitors/monitors.json has no entries"; exit 1; }
-jq -e '.version == "0.4.0"' plugin.json >/dev/null \
-  || { echo "FAIL: plugin.json version != 0.4.0"; exit 1; }
+jq -e '.version == "0.5.0"' .claude-plugin/plugin.json >/dev/null \
+  || { echo "FAIL: .claude-plugin/plugin.json version != 0.5.0"; exit 1; }
+test ! -f plugin.json \
+  || { echo "FAIL: plugin.json should not exist at repo root (cm-style; lives at .claude-plugin/plugin.json)"; exit 1; }
 
 # Each named skill present
 for s in north-star three-loop plan-first go verify parallel-worktrees \
