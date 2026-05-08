@@ -1,6 +1,6 @@
 {
   "name": "vanilla-boris-marketplace",
-  "description": "Marketplace entry for vanilla-boris. Hosted at github.com/fnefh/vanilla-boris (private). /plugin install resolves over the user's existing gh auth credentials.",
+  "description": "Marketplace entry for vanilla-boris. Hosted publicly at github.com/fnefh/vanilla-boris.",
   "owner": {
     "name": "fnefh",
     "url": "https://github.com/fnefh"
